@@ -1,0 +1,166 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/add_member"
+                android:id="@+id/add_member_button"
+                android:layout_gravity="fill|left"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:layout_marginBottom="0dp"
+                />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/add_books"
+                android:id="@+id/add_book_button"
+                android:layout_gravity="fill|right"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:layout_marginBottom="0dp"
+                />
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/issue_books"
+                android:id="@+id/issue_book_button"
+                android:layout_gravity="fill|left"
+                android:layout_margin="6dp"
+                android:layout_marginBottom="0dp"
+                android:layout_columnWeight="1"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/return_books"
+                android:id="@+id/return_book_button"
+                android:layout_gravity="fill|right"
+                android:layout_margin="6dp"
+                android:layout_marginBottom="0dp"
+                android:layout_columnWeight="1"/>
+        </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/renew_books"
+            android:id="@+id/renew_books_button"
+            android:layout_gravity="fill|left"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/remove_books"
+            android:id="@+id/remove_books_button"
+            android:layout_gravity="fill|right"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/place_hold"
+            android:id="@+id/place_hold_button"
+            android:layout_gravity="fill|left"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/remove_hold"
+            android:id="@+id/remove_hold_button"
+            android:layout_gravity="fill|right"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/process_holds"
+            android:id="@+id/process_holds_button"
+            android:layout_gravity="fill|left"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/print_transactions"
+            android:id="@+id/print_transactions_button"
+            android:layout_gravity="fill|right"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save_data"
+            android:id="@+id/save_data_button"
+            android:layout_gravity="fill|left"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/retrieve_data"
+            android:id="@+id/retrieve_data_button"
+            android:layout_gravity="fill|right"
+            android:layout_margin="6dp"
+            android:layout_marginBottom="0dp"
+            android:layout_columnWeight="1"/>
+    </GridLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help"
+            android:id="@+id/help_button"
+            android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

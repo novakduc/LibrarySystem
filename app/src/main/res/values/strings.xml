@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Library System</string>
+
+    <string name="add_member">Add a Member</string>
+    <string name="add_books">Add Books</string>
+    <string name="issue_books">Issue Books</string>
+    <string name="return_books">Return Books</string>
+    <string name="renew_books">Renew Books</string>
+    <string name="remove_books">Remove Books</string>
+    <string name="place_hold">Place a hold</string>
+    <string name="remove_hold">Remove a hold</string>
+    <string name="process_holds">Process Holds</string>
+    <string name="print_transactions">Print Transactions</string>
+    <string name="save_data">Save Data</string>
+    <string name="retrieve_data">Retrieve Data</string>
+    <string name="help">Help</string>
+    <string name="action_settings">Settings</string>
+</resources>
