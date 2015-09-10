@@ -6,4 +6,5 @@ package model;
 public class Library {
 
 
+    public static final int MAX_HOLD_DAYS = 30;
 }
