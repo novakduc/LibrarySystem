@@ -2,6 +2,7 @@ package Control;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -9,6 +10,8 @@ import java.util.NoSuchElementException;
  * Created by Novak on 9/6/2015.
  */
 public class Book {
+    public static final int RENEW_OK = 0;
+    public static final int ON_HOLD_RENEW_FAILED = 1;
     private long mId;
     private String mTitle;
     private String mAuthor;
@@ -26,8 +29,34 @@ public class Book {
         mHolds = new ArrayList<Hold>();
     }
 
-    public boolean removeHold(String memberId) {
-        // TODO: 9/10/2015
+    public Member returnBook() {
+        mDueDate = null;
+        Member member = mBorrowedBy;
+        mBorrowedBy = null;
+        return member;
+    }
+
+    public int renewBook() {
+        if (mHolds.isEmpty()) {
+            mDueDate.add(Calendar.DAY_OF_MONTH, 30);
+            mBorrowedBy.addTransaction(new Transaction(mTitle, Transaction.RENEW_TRANSACTION));
+            return Book.RENEW_OK;
+        } else
+            return ON_HOLD_RENEW_FAILED;
+    }
+
+    public boolean removeHold(long memberId) {
+        Iterator iterator = mHolds.iterator();
+        while (iterator.hasNext()) {
+            Object o = iterator.next();
+            if (o instanceof Hold) {
+                Hold hold = (Hold) o;
+                if (hold.getMember().getId() == memberId) {
+                    mHolds.remove(hold);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -52,8 +81,11 @@ public class Book {
     }
 
     public boolean issue(Member member) {
+
+        if (member.isInJail()) return false;
         mBorrowedBy = member;
-        // TODO: 9/10/2015 check member's condition before lending book
+        mDueDate = Calendar.getInstance();
+        mDueDate.add(Calendar.DAY_OF_MONTH, 30);
         return true;
     }
 
@@ -69,8 +101,8 @@ public class Book {
         return mAuthor;
     }
 
-    public List getHold() {
-        return mHolds;
+    public Iterator getHolds() {
+        return mHolds.iterator();
     }
 
     public Member getBorrowedBy() {
