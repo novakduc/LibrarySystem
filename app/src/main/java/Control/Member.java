@@ -1,6 +1,7 @@
 package Control;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -91,8 +92,16 @@ public class Member {
         return mHolds.remove(hold);
     }
 
-    public Iterator getTransactions() {
-        return mTransactions.iterator();
+    public Iterator getTransactions(Calendar date) {
+        List list = new ArrayList();
+        Transaction transaction;
+        for (int i = 0; i < mTransactions.size(); i++) {
+            transaction = mTransactions.get(i);
+            if (transaction.getDate().get(Calendar.YEAR) == date.get(Calendar.YEAR))
+                if (transaction.getDate().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR))
+                    list.add(transaction);
+        }
+        return list.iterator();
     }
 
     public Iterator getIssuedBooks() {
