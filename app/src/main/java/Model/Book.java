@@ -1,4 +1,4 @@
-package Control;
+package Model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
