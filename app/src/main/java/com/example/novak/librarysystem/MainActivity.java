@@ -1,5 +1,6 @@
 package com.example.novak.librarysystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         mAddMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 9/18/2015
+                Intent intent = new Intent(MainActivity.this, AddMemberActivity.class);
+                startActivity(intent);
             }
         });
     }
