@@ -10,20 +10,26 @@
             <Button
                 android:id="@+id/add_member_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill|start"
                 android:layout_margin="8dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/add_member"
                 />
 
             <Button
                 android:id="@+id/add_book_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill|end"
                 android:layout_margin="8dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/add_books"
                 />
         </GridLayout>
@@ -35,19 +41,25 @@
             <Button
                 android:id="@+id/issue_book_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill|start"
                 android:layout_margin="8dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/issue_books"/>
 
             <Button
                 android:id="@+id/return_book_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill|end"
                 android:layout_margin="8dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/return_books"/>
         </GridLayout>
 
