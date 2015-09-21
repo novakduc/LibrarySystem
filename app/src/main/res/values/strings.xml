@@ -18,4 +18,9 @@
     <string name="action_settings">Settings</string>
     <string name="add_member_name">Name:</string>
     <string name="add_member_name_hint">your name</string>
+    <string name="add_member_address">Address:</string>
+    <string name="add_member_address_hint">your address</string>
+    <string name="add_member_phone">Phone:</string>
+    <string name="add_member_phone_hint">your phone number</string>
+    <string name="add_member_register_button">REGISTER</string>
 </resources>

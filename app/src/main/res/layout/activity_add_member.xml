@@ -14,14 +14,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/add_member_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:layout_weight="25"
             android:text="@string/add_member_name"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="20sp"/>
@@ -30,9 +31,70 @@
             android:id="@+id/add_member_name_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="75"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/add_member_name_hint"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/add_member_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="25"
+            android:text="@string/add_member_address"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/add_member_address_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/add_member_address_hint"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/add_member_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="25"
+            android:text="@string/add_member_phone"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/add_member_phone_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="75"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/add_member_phone_hint"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="6dp"
+        android:padding="8dp"
+        android:text="@string/add_member_register_button"/>
 </LinearLayout>
