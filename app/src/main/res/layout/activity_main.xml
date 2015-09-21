@@ -1,33 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/add_member"
                 android:id="@+id/add_member_button"
-                android:layout_gravity="fill|left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:layout_marginBottom="0dp"
+                android:layout_gravity="fill|start"
+                android:layout_margin="8dp"
+                android:text="@string/add_member"
                 />
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/add_books"
                 android:id="@+id/add_book_button"
-                android:layout_gravity="fill|right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                android:layout_margin="6dp"
-                android:layout_marginBottom="0dp"
+                android:layout_gravity="fill|end"
+                android:layout_margin="8dp"
+                android:text="@string/add_books"
                 />
         </GridLayout>
 
@@ -36,24 +33,22 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/issue_books"
                 android:id="@+id/issue_book_button"
-                android:layout_gravity="fill|left"
-                android:layout_margin="6dp"
-                android:layout_marginBottom="0dp"
-                android:layout_columnWeight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill|start"
+                android:layout_margin="8dp"
+                android:text="@string/issue_books"/>
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/return_books"
                 android:id="@+id/return_book_button"
-                android:layout_gravity="fill|right"
-                android:layout_margin="6dp"
-                android:layout_marginBottom="0dp"
-                android:layout_columnWeight="1"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill|end"
+                android:layout_margin="8dp"
+                android:text="@string/return_books"/>
         </GridLayout>
 
     <GridLayout
@@ -61,24 +56,22 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/renew_books"
             android:id="@+id/renew_books_button"
-            android:layout_gravity="fill|left"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|start"
+            android:layout_margin="8dp"
+            android:text="@string/renew_books"/>
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/remove_books"
             android:id="@+id/remove_books_button"
-            android:layout_gravity="fill|right"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|end"
+            android:layout_margin="8dp"
+            android:text="@string/remove_books"/>
     </GridLayout>
 
     <GridLayout
@@ -86,24 +79,22 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/place_hold"
             android:id="@+id/place_hold_button"
-            android:layout_gravity="fill|left"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|start"
+            android:layout_margin="8dp"
+            android:text="@string/place_hold"/>
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/remove_hold"
             android:id="@+id/remove_hold_button"
-            android:layout_gravity="fill|right"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|end"
+            android:layout_margin="8dp"
+            android:text="@string/remove_hold"/>
     </GridLayout>
 
     <GridLayout
@@ -111,24 +102,22 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/process_holds"
             android:id="@+id/process_holds_button"
-            android:layout_gravity="fill|left"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|start"
+            android:layout_margin="8dp"
+            android:text="@string/process_holds"/>
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/print_transactions"
             android:id="@+id/print_transactions_button"
-            android:layout_gravity="fill|right"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|end"
+            android:layout_margin="8dp"
+            android:text="@string/print_transactions"/>
     </GridLayout>
 
     <GridLayout
@@ -136,31 +125,30 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/save_data"
             android:id="@+id/save_data_button"
-            android:layout_gravity="fill|left"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|start"
+            android:layout_margin="8dp"
+            android:text="@string/save_data"/>
 
         <Button
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="@string/retrieve_data"
             android:id="@+id/retrieve_data_button"
-            android:layout_gravity="fill|right"
-            android:layout_margin="6dp"
-            android:layout_marginBottom="0dp"
-            android:layout_columnWeight="1"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill|end"
+            android:layout_margin="8dp"
+            android:text="@string/retrieve_data"/>
     </GridLayout>
 
         <Button
+            android:id="@+id/help_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/help"
-            android:id="@+id/help_button"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:text="@string/help"/>
 
 </LinearLayout>
