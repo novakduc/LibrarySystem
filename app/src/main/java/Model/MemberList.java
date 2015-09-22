@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -27,14 +28,14 @@ public class MemberList {
         return mMembers.add(member);
     }
 
-    public Member search(long memberId) {
+    public Member search(UUID memberId) {
         Iterator iterator = mMembers.iterator();
         Object o;
         while (iterator.hasNext()) {
             o = iterator.next();
             if (o instanceof Member) {
                 Member member = (Member) o;
-                if (member.getId() == memberId)
+                if (member.getId().equals(memberId))
                     return member;
             }
         }

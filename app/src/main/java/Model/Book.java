@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -12,7 +13,7 @@ import java.util.NoSuchElementException;
 public class Book {
     public static final int RENEW_OK = 0;
     public static final int ON_HOLD_RENEW_FAILED = 1;
-    private long mId;
+    private UUID mId;
     private String mTitle;
     private String mAuthor;
     private List<Hold> mHolds;
@@ -22,7 +23,7 @@ public class Book {
     private Book() {
     }
 
-    public Book(long id, String title, String author) {
+    public Book(UUID id, String title, String author) {
         mId = id;
         mTitle = title;
         mAuthor = author;
@@ -45,13 +46,13 @@ public class Book {
             return ON_HOLD_RENEW_FAILED;
     }
 
-    public boolean removeHold(long memberId) {
+    public boolean removeHold(UUID memberId) {
         Iterator iterator = mHolds.iterator();
         while (iterator.hasNext()) {
             Object o = iterator.next();
             if (o instanceof Hold) {
                 Hold hold = (Hold) o;
-                if (hold.getMember().getId() == memberId) {
+                if (hold.getMember().getId().equals(memberId)) {
                     mHolds.remove(hold);
                     return true;
                 }
@@ -89,7 +90,7 @@ public class Book {
         return true;
     }
 
-    public long getId() {
+    public UUID getId() {
         return mId;
     }
 

@@ -23,4 +23,8 @@
     <string name="add_member_phone">Phone:</string>
     <string name="add_member_phone_hint">your phone number</string>
     <string name="add_member_register_button">REGISTER</string>
+    <string name="add_member_null_name_error">Illigal name</string>
+    <string name="add_member_null_address_error">Illegal address</string>
+    <string name="add_member_null_phone_error">Invalid phone number</string>
+    <string name="add_member_unsuccessful_notice">Register member unsuccessful</string>
 </resources>

@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -24,13 +25,13 @@ public class Catalog {
         return mBooks.remove(book);
     }
 
-    public Book search(long bookId) {
+    public Book search(UUID bookId) {
         Iterator iterator = mBooks.iterator();
         while (iterator.hasNext()) {
             Object o = iterator.next();
             if (o instanceof Book) {
                 Book book = (Book) o;
-                if (book.getId() == bookId)
+                if (book.getId().equals(bookId))
                     return book;
             }
         }
