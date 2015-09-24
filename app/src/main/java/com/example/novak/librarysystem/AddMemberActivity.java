@@ -26,7 +26,7 @@ public class AddMemberActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
 
-        mLibrary = new Library();
+        mLibrary = Library.getInstance();
 
         mAddMemberAddressInputTextView = (TextView) findViewById(R.id.add_member_name_input);
         mAddMemberAddressInputTextView = (TextView) findViewById(R.id.add_member_address_input);

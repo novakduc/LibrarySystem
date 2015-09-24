@@ -8,16 +8,22 @@ import java.util.UUID;
  * Created by Novak on 9/6/2015.
  */
 public class MemberList {
+
+    private volatile static MemberList sUniqueInstance;
     private List mMembers;
-    private MemberList mMemberList;
 
     private MemberList() {
     }
 
     public MemberList getInstance() {
-        if (mMemberList == null)
-            return new MemberList();
-        else return mMemberList;
+        if (sUniqueInstance == null) {
+            synchronized (MemberList.class) {
+                if (sUniqueInstance == null) {
+                    sUniqueInstance = new MemberList();
+                }
+            }
+        }
+        return sUniqueInstance;
     }
 
     public Iterator getMembers() {

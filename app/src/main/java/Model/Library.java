@@ -27,8 +27,23 @@ public class Library {
     public static final int BOOK_PLACE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_FAIL = 3;
+    private volatile static Library sUniqueInstance;
     private MemberList mMemberList;
     private Catalog mCatalog;
+
+    private Library() {
+    }
+
+    public static Library getInstance() {
+        if (sUniqueInstance == null) {
+            synchronized (Library.class) {
+                if (sUniqueInstance == null) {
+                    sUniqueInstance = new Library();
+                }
+            }
+        }
+        return sUniqueInstance;
+    }
 
     public int removeHold(UUID memberId, UUID bookId) {
         Member member = mMemberList.search(memberId);

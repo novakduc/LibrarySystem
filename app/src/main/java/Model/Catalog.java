@@ -8,17 +8,21 @@ import java.util.UUID;
  * Created by Novak on 9/6/2015.
  */
 public class Catalog {
+    private volatile static Catalog sUniqueInstance;
     private List mBooks;
-    private Catalog mCatalog;
 
     private Catalog() {
     }
 
     public Catalog getInstance() {
-        if (mCatalog == null)
-            return new Catalog();
-        else
-            return mCatalog;
+        if (sUniqueInstance == null) {
+            synchronized (Catalog.class) {
+                if (sUniqueInstance == null) {
+                    sUniqueInstance = new Catalog();
+                }
+            }
+        }
+        return sUniqueInstance;
     }
 
     public boolean remove(Book book) {
