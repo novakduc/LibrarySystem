@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -13,9 +14,10 @@ public class MemberList {
     private List mMembers;
 
     private MemberList() {
+        mMembers = new ArrayList();
     }
 
-    public MemberList getInstance() {
+    public static MemberList getInstance() {
         if (sUniqueInstance == null) {
             synchronized (MemberList.class) {
                 if (sUniqueInstance == null) {

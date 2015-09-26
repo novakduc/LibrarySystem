@@ -37,7 +37,7 @@
             android:layout_weight="75"
             android:ems="10"
             android:hint="@string/add_member_name_hint"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName|textCapWords"/>
     </LinearLayout>
 
     <LinearLayout
@@ -62,7 +62,7 @@
             android:layout_weight="75"
             android:ems="10"
             android:hint="@string/add_member_address_hint"
-            android:inputType="textPersonName"/>
+            android:inputType="textPostalAddress|textCapWords|textNoSuggestions"/>
     </LinearLayout>
 
     <LinearLayout
@@ -87,7 +87,7 @@
             android:layout_weight="75"
             android:ems="10"
             android:hint="@string/add_member_phone_hint"
-            android:inputType="textPersonName"/>
+            android:inputType="phone"/>
     </LinearLayout>
 
     <Button

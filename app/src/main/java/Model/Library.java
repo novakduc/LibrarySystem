@@ -32,6 +32,8 @@ public class Library {
     private Catalog mCatalog;
 
     private Library() {
+        mMemberList = MemberList.getInstance();
+        mCatalog = Catalog.getInstance();
     }
 
     public static Library getInstance() {

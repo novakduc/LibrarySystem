@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -12,9 +13,10 @@ public class Catalog {
     private List mBooks;
 
     private Catalog() {
+        mBooks = new ArrayList();
     }
 
-    public Catalog getInstance() {
+    public static Catalog getInstance() {
         if (sUniqueInstance == null) {
             synchronized (Catalog.class) {
                 if (sUniqueInstance == null) {

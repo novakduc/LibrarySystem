@@ -23,8 +23,8 @@
     <string name="add_member_phone">Phone:</string>
     <string name="add_member_phone_hint">your phone number</string>
     <string name="add_member_register_button">REGISTER</string>
-    <string name="add_member_null_name_error">Illigal name</string>
-    <string name="add_member_null_address_error">Illegal address</string>
+    <string name="add_member_null_name_error">Invalid name</string>
+    <string name="add_member_null_address_error">Invalid address</string>
     <string name="add_member_null_phone_error">Invalid phone number</string>
     <string name="add_member_unsuccessful_notice">Register member unsuccessful</string>
     <string name="add_books_guide">Please fill in book information and hit Add button</string>
@@ -33,4 +33,8 @@
     <string name="add_book_author">Author:</string>
     <string name="add_book_author_hint">Author</string>
     <string name="add_book_add_button">ADD</string>
+    <string name="add_member_success">Add new member successful!</string>
+    <string name="add_member_confirmation">Confirmation</string>
+    <string name="add_member_confirmation_name">Name:</string>
+    <string name="dialog_add_member_confirmation_title">Add member</string>
 </resources>
