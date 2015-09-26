@@ -5,7 +5,7 @@
               android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dialog_add_member_confirmation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -13,26 +13,26 @@
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/dialog_add_member_confirmation_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/dialog_add_member_confirmation_title"
+        android:text="@string/add_member_name"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/dialog_add_member_confirmation_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/dialog_add_member_confirmation_title"
+        android:text="@string/add_member_address"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/dialog_add_member_confirmation_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/dialog_add_member_confirmation_title"
+        android:text="@string/add_member_phone"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 </LinearLayout>
