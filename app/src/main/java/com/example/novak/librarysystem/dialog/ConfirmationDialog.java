@@ -14,6 +14,11 @@ import com.example.novak.librarysystem.R;
  * Created by Novak on 9/26/2015.
  */
 public class ConfirmationDialog extends DialogFragment {
+    public ConfirmationDialog() {
+        super();
+
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -22,7 +27,9 @@ public class ConfirmationDialog extends DialogFragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View v = layoutInflater.inflate(R.layout.dialog_add_member_confirmation, null);
 
-        TextView nameTextView = (TextView) v.findViewById(R.id.dialog_add_member_confirmation_name);
+        TextView nameTextView = (TextView) v.findViewById(R.id.dialog_add_member_confirmation_name),
+                addressTextView = (TextView) v.findViewById(R.id.dialog_add_member_confirmation_address),
+                phoneTextView = (TextView) v.findViewById(R.id.dialog_add_member_confirmation_phone);
 
         return super.onCreateDialog(savedInstanceState);
     }
