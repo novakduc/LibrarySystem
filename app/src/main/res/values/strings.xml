@@ -14,7 +14,7 @@
     <string name="save_data">Save Data</string>
     <string name="retrieve_data">Retrieve Data</string>
     <string name="help">Help</string>
-    <string name="add_member_title">Please fill in below form.</string>
+    <string name="add_member_title">Please fill in below form and hit Register button.</string>
     <string name="action_settings">Settings</string>
     <string name="add_member_name">Name:</string>
     <string name="add_member_name_hint">your name</string>
@@ -23,4 +23,14 @@
     <string name="add_member_phone">Phone:</string>
     <string name="add_member_phone_hint">your phone number</string>
     <string name="add_member_register_button">REGISTER</string>
+    <string name="add_member_null_name_error">Illigal name</string>
+    <string name="add_member_null_address_error">Illegal address</string>
+    <string name="add_member_null_phone_error">Invalid phone number</string>
+    <string name="add_member_unsuccessful_notice">Register member unsuccessful</string>
+    <string name="add_books_guide">Please fill in book information and hit Add button</string>
+    <string name="add_book_title">Title:</string>
+    <string name="add_book_title_hint">Title</string>
+    <string name="add_book_author">Author:</string>
+    <string name="add_book_author_hint">Author</string>
+    <string name="add_book_add_button">ADD</string>
 </resources>

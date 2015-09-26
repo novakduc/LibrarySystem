@@ -7,12 +7,12 @@
               android:paddingRight="16dp">
 
     <TextView
-        android:id="@+id/add_member_title"
+        android:id="@+id/add_book_guide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:text="@string/add_member_title"
+        android:text="@string/add_books_guide"
         android:textColor="@color/primary_text_default_material_light"
         android:textSize="20sp"/>
 
@@ -22,21 +22,21 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/add_member_name"
+            android:id="@+id/add_book_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:text="@string/add_member_name"
+            android:text="@string/add_book_title"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="20sp"/>
 
         <EditText
-            android:id="@+id/add_member_name_input"
+            android:id="@+id/add_book_title_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
             android:ems="10"
-            android:hint="@string/add_member_name_hint"
+            android:hint="@string/add_book_title_hint"
             android:inputType="textPersonName"/>
     </LinearLayout>
 
@@ -47,55 +47,30 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/add_member_address"
+            android:id="@+id/add_book_author"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="25"
-            android:text="@string/add_member_address"
+            android:text="@string/add_book_author"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="20sp"/>
 
         <EditText
-            android:id="@+id/add_member_address_input"
+            android:id="@+id/add_book_author_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
             android:ems="10"
-            android:hint="@string/add_member_address_hint"
-            android:inputType="textPersonName"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/add_member_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="@string/add_member_phone"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/add_member_phone_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="75"
-            android:ems="10"
-            android:hint="@string/add_member_phone_hint"
+            android:hint="@string/add_book_author_hint"
             android:inputType="textPersonName"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/add_member_register_button"
+        android:id="@+id/add_book_add_button"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:text="@string/add_member_register_button"/>
+        android:text="@string/add_book_add_button"/>
 </LinearLayout>

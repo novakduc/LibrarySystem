@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -26,10 +27,25 @@ public class Library {
     public static final int BOOK_PLACE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_FAIL = 3;
+    private volatile static Library sUniqueInstance;
     private MemberList mMemberList;
     private Catalog mCatalog;
 
-    public int removeHold(long memberId, long bookId) {
+    private Library() {
+    }
+
+    public static Library getInstance() {
+        if (sUniqueInstance == null) {
+            synchronized (Library.class) {
+                if (sUniqueInstance == null) {
+                    sUniqueInstance = new Library();
+                }
+            }
+        }
+        return sUniqueInstance;
+    }
+
+    public int removeHold(UUID memberId, UUID bookId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return REMOVE_HOLD_FAIL_MEMBER_NOT_EXIST;
         Book book = mCatalog.search(bookId);
@@ -42,7 +58,7 @@ public class Library {
         return mMemberList.insert(member) ? member : null;
     }
 
-    public Book addBook(long Id, String title, String author) {
+    public Book addBook(UUID Id, String title, String author) {
         Book book = new Book(Id, title, author);
         return mCatalog.insert(book) ? book : null;
     }
@@ -51,13 +67,13 @@ public class Library {
         return book.renewBook();
     }
 
-    public Iterator renewRequest(long memberId) {
+    public Iterator renewRequest(UUID memberId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return null;
         return member.getIssuedBooks();
     }
 
-    public Member processHold(long bookId) {
+    public Member processHold(UUID bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return null;
         Hold hold = book.getNextHold();
@@ -69,18 +85,18 @@ public class Library {
         return member;
     }
 
-    public Book issueBook(long bookId, Member member) {
+    public Book issueBook(UUID bookId, Member member) {
         Book book = mCatalog.search(bookId);
         if (book == null) return null;
         if (book.issue(member) && member.issueBook(book)) return book;
         return null;
     }
 
-    public Member searchMember(long memberId) {
+    public Member searchMember(UUID memberId) {
         return mMemberList.search(memberId);
     }
 
-    public int placeHold(long memberId, long bookId, int duration) {
+    public int placeHold(UUID memberId, UUID bookId, int duration) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_PLACE_HOLD_FAIL_NOT_EXIST;
         Member member = book.getBorrowedBy();
@@ -92,7 +108,7 @@ public class Library {
         return BOOK_PLACE_HOLD_OK;
     }
 
-    public int returnBook(long bookId) {
+    public int returnBook(UUID bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_RETURN_FAIL_NOT_EXIST;
         Member member = book.returnBook();
@@ -102,7 +118,7 @@ public class Library {
         return BOOK_RETURN_OK_HOLD;
     }
 
-    public int removeBook(long bookId) {
+    public int removeBook(UUID bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_REMOVE_FAIL_NOT_EXIST;
         if (book.hasHold()) return BOOK_REMOVE_FAIL_HOLD;
@@ -111,7 +127,7 @@ public class Library {
         return BOOK_REMOVE_OK;
     }
 
-    public Iterator getTransactions(long memberId, Calendar date) {
+    public Iterator getTransactions(UUID memberId, Calendar date) {
         Member member = mMemberList.search(memberId);
         if (member != null) return member.getTransactions(date);
         return null;
