@@ -37,4 +37,6 @@
     <string name="add_member_confirmation">Confirmation</string>
     <string name="add_member_confirmation_name">Name:</string>
     <string name="dialog_add_member_confirmation_title">Add member</string>
+    <string name="add_member_ok">Ok</string>
+    <string name="add_member_cancel">Cancel</string>
 </resources>
