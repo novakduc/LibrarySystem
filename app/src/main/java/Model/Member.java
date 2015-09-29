@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -12,7 +11,7 @@ import java.util.UUID;
 public class Member {
 
     public static int NORMAL_STATUS = 0;
-    private UUID mId;
+    private long mId;
     private String mName;
     private String mAddress;
     private String mPhone;
@@ -29,7 +28,7 @@ public class Member {
         this.mName = mName;
         this.mAddress = mAddress;
         this.mPhone = mPhone;
-        mId = UUID.randomUUID();
+        mId = MemberList.getNumberOfMembers();
         mIssuedBooks = new ArrayList<Book>(Library.MAX_ISSUABLE);
         mTransactions = new ArrayList<Transaction>();
         mHolds = new ArrayList<Hold>(Library.MAX_NUMBER_OF_HOLDS);
@@ -73,13 +72,13 @@ public class Member {
         mHolds.add(hold);
     }
 
-    public boolean removeHold(UUID bookId) {
+    public boolean removeHold(long bookId) {
         Iterator iterator = mHolds.iterator();
         while (iterator.hasNext()) {
             Object object = iterator.next();
             if (object instanceof Hold) {
                 Hold hold = (Hold) object;
-                if (hold.getBook().getId().equals(bookId)) {
+                if (hold.getBook().getId() == bookId) {
                     mTransactions.add(new Transaction(hold.getBook().getTitle(), Transaction.REMOVE_HOLD));
                     iterator.remove();
                     return true;
@@ -110,7 +109,7 @@ public class Member {
         return mIssuedBooks.iterator();
     }
 
-    public UUID getId() {
+    public long getId() {
         return mId;
     }
 

@@ -7,32 +7,50 @@
     <TextView
         android:id="@+id/dialog_add_member_confirmation_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="48dp"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/dialog_add_member_confirmation_title"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/dialog_add_member_confirmation_id"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
+        android:text="@string/add_member_confirmation_id"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/dialog_add_member_confirmation_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/add_member_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/dialog_add_member_confirmation_address"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/add_member_address"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/dialog_add_member_confirmation_phone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="40dp"
+        android:layout_gravity="left"
+        android:gravity="center_vertical"
         android:text="@string/add_member_phone"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="13sp"/>
 </LinearLayout>

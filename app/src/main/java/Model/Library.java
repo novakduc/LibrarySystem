@@ -1,8 +1,9 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -30,24 +31,26 @@ public class Library {
     private volatile static Library sUniqueInstance;
     private MemberList mMemberList;
     private Catalog mCatalog;
+    private Context mAppContext;
 
-    private Library() {
+    private Library(Context appContext) {
         mMemberList = MemberList.getInstance();
         mCatalog = Catalog.getInstance();
+        mAppContext = appContext;
     }
 
-    public static Library getInstance() {
+    public static Library getInstance(Context appContext) {
         if (sUniqueInstance == null) {
             synchronized (Library.class) {
                 if (sUniqueInstance == null) {
-                    sUniqueInstance = new Library();
+                    sUniqueInstance = new Library(appContext);
                 }
             }
         }
         return sUniqueInstance;
     }
 
-    public int removeHold(UUID memberId, UUID bookId) {
+    public int removeHold(long memberId, long bookId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return REMOVE_HOLD_FAIL_MEMBER_NOT_EXIST;
         Book book = mCatalog.search(bookId);
@@ -60,8 +63,8 @@ public class Library {
         return mMemberList.insert(member) ? member : null;
     }
 
-    public Book addBook(UUID Id, String title, String author) {
-        Book book = new Book(Id, title, author);
+    public Book addBook(String title, String author) {
+        Book book = new Book(title, author);
         return mCatalog.insert(book) ? book : null;
     }
 
@@ -69,13 +72,13 @@ public class Library {
         return book.renewBook();
     }
 
-    public Iterator renewRequest(UUID memberId) {
+    public Iterator renewRequest(long memberId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return null;
         return member.getIssuedBooks();
     }
 
-    public Member processHold(UUID bookId) {
+    public Member processHold(long bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return null;
         Hold hold = book.getNextHold();
@@ -87,18 +90,18 @@ public class Library {
         return member;
     }
 
-    public Book issueBook(UUID bookId, Member member) {
+    public Book issueBook(long bookId, Member member) {
         Book book = mCatalog.search(bookId);
         if (book == null) return null;
         if (book.issue(member) && member.issueBook(book)) return book;
         return null;
     }
 
-    public Member searchMember(UUID memberId) {
+    public Member searchMember(long memberId) {
         return mMemberList.search(memberId);
     }
 
-    public int placeHold(UUID memberId, UUID bookId, int duration) {
+    public int placeHold(long memberId, long bookId, int duration) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_PLACE_HOLD_FAIL_NOT_EXIST;
         Member member = book.getBorrowedBy();
@@ -110,7 +113,7 @@ public class Library {
         return BOOK_PLACE_HOLD_OK;
     }
 
-    public int returnBook(UUID bookId) {
+    public int returnBook(long bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_RETURN_FAIL_NOT_EXIST;
         Member member = book.returnBook();
@@ -120,7 +123,7 @@ public class Library {
         return BOOK_RETURN_OK_HOLD;
     }
 
-    public int removeBook(UUID bookId) {
+    public int removeBook(long bookId) {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_REMOVE_FAIL_NOT_EXIST;
         if (book.hasHold()) return BOOK_REMOVE_FAIL_HOLD;
@@ -129,7 +132,7 @@ public class Library {
         return BOOK_REMOVE_OK;
     }
 
-    public Iterator getTransactions(UUID memberId, Calendar date) {
+    public Iterator getTransactions(long memberId, Calendar date) {
         Member member = mMemberList.search(memberId);
         if (member != null) return member.getTransactions(date);
         return null;

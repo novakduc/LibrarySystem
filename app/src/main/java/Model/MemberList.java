@@ -3,7 +3,6 @@ package Model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -11,10 +10,16 @@ import java.util.UUID;
 public class MemberList {
 
     private volatile static MemberList sUniqueInstance;
+    private static long sNumberOfMembers;
     private List mMembers;
 
     private MemberList() {
+        sNumberOfMembers = 0;
         mMembers = new ArrayList();
+    }
+
+    public static long getNumberOfMembers() {
+        return sNumberOfMembers;
     }
 
     public static MemberList getInstance() {
@@ -33,17 +38,18 @@ public class MemberList {
     }
 
     public boolean insert(Member member) {
+        sNumberOfMembers++;
         return mMembers.add(member);
     }
 
-    public Member search(UUID memberId) {
+    public Member search(long memberId) {
         Iterator iterator = mMembers.iterator();
         Object o;
         while (iterator.hasNext()) {
             o = iterator.next();
             if (o instanceof Member) {
                 Member member = (Member) o;
-                if (member.getId().equals(memberId))
+                if (member.getId() == memberId)
                     return member;
             }
         }

@@ -3,17 +3,22 @@ package Model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Novak on 9/6/2015.
  */
 public class Catalog {
+    public static long sNumberOfBooks;
     private volatile static Catalog sUniqueInstance;
     private List mBooks;
 
     private Catalog() {
+        sNumberOfBooks = 0;
         mBooks = new ArrayList();
+    }
+
+    public static long getNumberOfBooks() {
+        return sNumberOfBooks;
     }
 
     public static Catalog getInstance() {
@@ -31,13 +36,13 @@ public class Catalog {
         return mBooks.remove(book);
     }
 
-    public Book search(UUID bookId) {
+    public Book search(long bookId) {
         Iterator iterator = mBooks.iterator();
         while (iterator.hasNext()) {
             Object o = iterator.next();
             if (o instanceof Book) {
                 Book book = (Book) o;
-                if (book.getId().equals(bookId))
+                if (book.getId() == bookId)
                     return book;
             }
         }
@@ -45,6 +50,7 @@ public class Catalog {
     }
 
     public boolean insert(Book book) {
+        sNumberOfBooks++;
         return mBooks.add(book);
     }
 

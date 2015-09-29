@@ -21,6 +21,10 @@
             android:name=".AddMemberActivity"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name=".AddBooksActivity"
+            android:label="@string/title_activity_add_book">
+        </activity>
     </application>
 
 </manifest>

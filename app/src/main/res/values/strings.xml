@@ -36,7 +36,14 @@
     <string name="add_member_success">Add new member successful!</string>
     <string name="add_member_confirmation">Confirmation</string>
     <string name="add_member_confirmation_name">Name:</string>
-    <string name="dialog_add_member_confirmation_title">Add member</string>
+    <string name="add_member_confirmation_id">ID:</string>
+    <string name="dialog_add_member_confirmation_title">Add member successfully</string>
     <string name="add_member_ok">Ok</string>
     <string name="add_member_cancel">Cancel</string>
+    <string name="title_activity_add_book">AddBookActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="add_book_null_title_error">Invalid book title</string>
+    <string name="add_book_null_author_error">Invalid author name</string>
+    <string name="add_book_error">Add book unsuccessfully</string>
 </resources>
