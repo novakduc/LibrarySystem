@@ -46,4 +46,7 @@
     <string name="add_book_null_title_error">Invalid book title</string>
     <string name="add_book_null_author_error">Invalid author name</string>
     <string name="add_book_error">Add book unsuccessfully</string>
+    <string name="dialog_add_book_confirmation_title">Add book successfully</string>
+    <string name="add_book_confirmation_id">ID:</string>
+    <string name="add_book_for_other">Fill in information for other book or finish by Back button</string>
 </resources>

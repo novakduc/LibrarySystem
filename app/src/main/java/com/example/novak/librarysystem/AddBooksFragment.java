@@ -2,6 +2,7 @@ package com.example.novak.librarysystem;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.novak.librarysystem.dialog.AddBookConfirmationDialog;
 
 import Model.Book;
 import Model.Library;
@@ -22,7 +25,6 @@ public class AddBooksFragment extends Fragment {
 
     private static final String DIALOG_CONFIRMATION = "confirm";
     private static final int REQUEST_CONFIRMATION = 0;
-    private Button mAddBookButton;
     private EditText mAddBookTitleEditText;
     private EditText mAddBookAuthorEditText;
     private Library mLibrary;
@@ -36,7 +38,7 @@ public class AddBooksFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        getActivity().finish();
+        Toast.makeText(getActivity(), R.string.add_book_for_other, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -53,9 +55,9 @@ public class AddBooksFragment extends Fragment {
 
         mAddBookTitleEditText = (EditText) v.findViewById(R.id.add_book_title_input);
         mAddBookAuthorEditText = (EditText) v.findViewById(R.id.add_book_author_input);
-        mAddBookButton = (Button) v.findViewById(R.id.add_book_button);
+        Button addBookButton = (Button) v.findViewById(R.id.add_book_button);
 
-        mAddBookButton.setOnClickListener(new View.OnClickListener() {
+        addBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -76,7 +78,11 @@ public class AddBooksFragment extends Fragment {
                     Toast.makeText(getActivity(), R.string.add_book_error, Toast.LENGTH_SHORT).show();
                 } else {
                     mId = book.getId();
-                    // TODO: 9/29/2015 create and show result dialog
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    AddBookConfirmationDialog dialog = AddBookConfirmationDialog.newInstance(mTitle, mAuthor, mId);
+                    dialog.setTargetFragment(AddBooksFragment.this, REQUEST_CONFIRMATION);
+                    dialog.show(fragmentManager, DIALOG_CONFIRMATION);
                 }
             }
         });

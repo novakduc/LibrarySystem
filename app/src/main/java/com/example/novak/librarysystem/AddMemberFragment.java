@@ -25,7 +25,6 @@ public class AddMemberFragment extends Fragment {
 
     private static final String DIALOG_CONFIRMATION = "confirm";
     private static final int REQUEST_CONFIRMATION = 0;
-    private Button mAddMemberRegisterButton;
     private EditText mAddMemberNameEditText;
     private EditText mAddMemberAddressEditText;
     private EditText mAddMemberPhoneEditText;
@@ -58,9 +57,9 @@ public class AddMemberFragment extends Fragment {
         mAddMemberNameEditText = (EditText) v.findViewById(R.id.add_member_name_input);
         mAddMemberAddressEditText = (EditText) v.findViewById(R.id.add_member_address_input);
         mAddMemberPhoneEditText = (EditText) v.findViewById(R.id.add_member_phone_input);
-        mAddMemberRegisterButton = (Button) v.findViewById(R.id.add_member_register_button);
+        Button addMemberRegisterButton = (Button) v.findViewById(R.id.add_member_register_button);
 
-        mAddMemberRegisterButton.setOnClickListener(new View.OnClickListener() {
+        addMemberRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mName = mAddMemberNameEditText.getText().toString();

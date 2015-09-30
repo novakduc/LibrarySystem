@@ -63,6 +63,15 @@ public class MainFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        mAddBookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 }

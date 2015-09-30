@@ -15,6 +15,8 @@ public class AddBooksActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-
+        AddBooksFragment addBooksFragment = new AddBooksFragment();
+        fragmentTransaction.add(R.id.add_book_fragment_container, addBooksFragment);
+        fragmentTransaction.commit();
     }
 }
