@@ -66,6 +66,7 @@ public class AddBookConfirmationDialog extends DialogFragment {
         String idShow = idTextView.getText().toString() + " " + mId;
         idTextView.setText(idShow);
 
+        builder.setTitle(R.string.dialog_add_book_confirmation_title);
         builder.setView(v);
         builder.setPositiveButton(R.string.add_member_ok, new DialogInterface.OnClickListener() {
             @Override
