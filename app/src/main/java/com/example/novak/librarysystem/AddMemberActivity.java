@@ -18,8 +18,10 @@ public class AddMemberActivity extends Activity {
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 
-        AddMemberFragment addMemberFragment = new AddMemberFragment();
-        transaction.add(R.id.add_member_fragment_container, addMemberFragment);
+        AddMemberFragment addMemberFragment =
+                (AddMemberFragment) manager.findFragmentById(R.id.add_member_fragment_container);
+        if (addMemberFragment == null) addMemberFragment = new AddMemberFragment();
+        transaction.replace(R.id.add_member_fragment_container, addMemberFragment);
         transaction.commit();
     }
 }

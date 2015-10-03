@@ -24,6 +24,9 @@ import Model.Member;
 public class AddMemberFragment extends Fragment {
 
     private static final String DIALOG_CONFIRMATION = "confirm";
+    private static final String KEY_ADD_NAME_INPUT = "ADD_NAME_INPUT";
+    private static final String KEY_ADD_ADDRESS_INPUT = "ADD_ADDRESS_INPUT";
+    private static final String KEY_ADD_PHONE_INPUT = "ADD_PHONE_INPUT";
     private static final int REQUEST_CONFIRMATION = 0;
     private EditText mAddMemberNameEditText;
     private EditText mAddMemberAddressEditText;
@@ -63,7 +66,6 @@ public class AddMemberFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mName = mAddMemberNameEditText.getText().toString();
-
                 if (mName.length() == 0) {
                     Toast.makeText(getActivity(), R.string.add_member_null_name_error, Toast.LENGTH_SHORT).show();
                     return;

@@ -35,7 +35,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
-            android:ems="10"
             android:hint="@string/add_member_name_hint"
             android:inputType="textPersonName|textCapWords"/>
     </LinearLayout>
@@ -60,7 +59,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
-            android:ems="10"
             android:hint="@string/add_member_address_hint"
             android:inputType="textPostalAddress|textCapWords|textNoSuggestions"/>
     </LinearLayout>
@@ -85,7 +83,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="75"
-            android:ems="10"
             android:hint="@string/add_member_phone_hint"
             android:inputType="phone"/>
     </LinearLayout>

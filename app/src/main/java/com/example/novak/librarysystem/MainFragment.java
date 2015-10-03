@@ -71,6 +71,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mIssueBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), IssueBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 }

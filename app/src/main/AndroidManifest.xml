@@ -25,6 +25,8 @@
             android:name=".AddBooksActivity"
             android:label="@string/title_activity_add_book">
         </activity>
+        <activity android:name=".IssueBookActivity">
+        </activity>
     </application>
 
 </manifest>
