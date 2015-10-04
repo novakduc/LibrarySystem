@@ -62,4 +62,7 @@
     <string name="member_not_exist">Member not exist</string>
     <string name="issue_book_invalid_member_id">Invalid member ID</string>
     <string name="issue_book_invalid_book_id">Invalid book ID</string>
+    <string name="book_not_exist">Book not exist</string>
+    <string name="issue_book_unsuccessfully">Issue book successfully</string>
+    <string name="issue_book_successfully">Book has been issued</string>
 </resources>

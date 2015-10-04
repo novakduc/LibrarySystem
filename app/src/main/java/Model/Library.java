@@ -97,6 +97,10 @@ public class Library {
         return null;
     }
 
+    public Book issueBook(Book book, Member member) {
+        return (book.issue(member) && (member.issueBook(book))) ? book : null;
+    }
+
     public Member searchMember(long memberId) {
         return mMemberList.search(memberId);
     }

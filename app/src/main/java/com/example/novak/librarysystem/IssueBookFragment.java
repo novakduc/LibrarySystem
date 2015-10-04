@@ -53,7 +53,27 @@ public class IssueBookFragment extends Fragment {
 
         mMemberSearchButton = (Button) view.findViewById(R.id.issue_book_member_search_button);
         mBookSearchButton = (Button) view.findViewById(R.id.issue_book_book_search_button);
-        mIssueButton = (Button) view.findViewById(R.id.issue_book_button);
+        mIssueButton = (Button) view.findViewById(R.id.issue_book_issue_button);
+
+        mIssueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mMember == null) {
+                    Toast.makeText(getActivity(), R.string.member_not_exist, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mBook == null) {
+                    Toast.makeText(getActivity(), R.string.book_not_exist, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (mLibrary.issueBook(mBook, mMember) == null) {
+                    Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), R.string.issue_book_successfully, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         mBookSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +83,17 @@ public class IssueBookFragment extends Fragment {
                 try {
                     long id = Long.parseLong(s);
                     mBook = mLibrary.searchBook(id);
-                    // TODO: 10/4/2015  
+                    if (mBook == null) {
+                        Toast.makeText(getActivity(), R.string.book_not_exist, Toast.LENGTH_SHORT).show();
+                        mBookTitleEditText.setText("");
+                        mBookTitleEditText.setHint(R.string.book_not_exist);
+                        mBookAuthorEditText.setText("");
+                        mBookAuthorEditText.setHint(R.string.book_not_exist);
+                        return;
+                    }
+
+                    mBookTitleEditText.setText(mBook.getTitle());
+                    mBookAuthorEditText.setText(mBook.getAuthor());
                 } catch (NumberFormatException ex) {
                     Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();
                 }
