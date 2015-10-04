@@ -17,8 +17,10 @@ public class AddBooksActivity extends AppCompatActivity {
 
         AddBooksFragment addBooksFragment =
                 (AddBooksFragment) fragmentManager.findFragmentById(R.id.add_book_fragment_container);
-        if (addBooksFragment == null) addBooksFragment = new AddBooksFragment();
-        fragmentTransaction.replace(R.id.add_book_fragment_container, addBooksFragment);
-        fragmentTransaction.commit();
+        if (addBooksFragment == null) {
+            addBooksFragment = new AddBooksFragment();
+            fragmentTransaction.add(R.id.add_book_fragment_container, addBooksFragment);
+            fragmentTransaction.commit();
+        }
     }
 }

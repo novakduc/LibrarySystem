@@ -17,8 +17,10 @@ public class IssueBookActivity extends AppCompatActivity {
 
         IssueBookFragment issueBookFragment =
                 (IssueBookFragment) fragmentManager.findFragmentById(R.id.issue_book_fragment_container);
-        if (issueBookFragment == null) issueBookFragment = new IssueBookFragment();
-        fragmentTransaction.replace(R.id.issue_book_fragment_container, issueBookFragment);
-        fragmentTransaction.commit();
+        if (issueBookFragment == null) {
+            issueBookFragment = new IssueBookFragment();
+            fragmentTransaction.add(R.id.issue_book_fragment_container, issueBookFragment);
+            fragmentTransaction.commit();
+        }
     }
 }

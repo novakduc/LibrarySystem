@@ -20,8 +20,10 @@ public class AddMemberActivity extends Activity {
 
         AddMemberFragment addMemberFragment =
                 (AddMemberFragment) manager.findFragmentById(R.id.add_member_fragment_container);
-        if (addMemberFragment == null) addMemberFragment = new AddMemberFragment();
-        transaction.replace(R.id.add_member_fragment_container, addMemberFragment);
-        transaction.commit();
+        if (addMemberFragment == null) {
+            addMemberFragment = new AddMemberFragment();
+            transaction.add(R.id.add_member_fragment_container, addMemberFragment);
+            transaction.commit();
+        }
     }
 }
