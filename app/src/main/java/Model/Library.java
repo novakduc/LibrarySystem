@@ -137,4 +137,8 @@ public class Library {
         if (member != null) return member.getTransactions(date);
         return null;
     }
+
+    public Book searchBook(long id) {
+        return mCatalog.search(id);
+    }
 }

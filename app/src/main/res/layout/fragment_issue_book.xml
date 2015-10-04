@@ -42,7 +42,7 @@
                 android:inputType="number"/>
 
             <Button
-                android:id="@+id/issue_book_member_id_button"
+                android:id="@+id/issue_book_member_search_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="30"
@@ -68,7 +68,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:editable="false"/>
+                android:editable="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -89,7 +90,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:editable="false"/>
+                android:editable="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,7 +112,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:editable="false"/>
+                android:editable="false"
+                android:focusable="false"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -142,7 +145,7 @@
                 android:inputType="number"/>
 
             <Button
-                android:id="@+id/issue_book_book_id_button"
+                android:id="@+id/issue_book_book_search_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="30"
@@ -168,7 +171,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:editable="false"/>
+                android:editable="false"
+                android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -189,7 +193,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:editable="false"/>
+                android:editable="false"
+                android:focusable="false"/>
         </LinearLayout>
     </LinearLayout>
 
