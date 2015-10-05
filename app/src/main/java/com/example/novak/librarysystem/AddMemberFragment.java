@@ -83,18 +83,22 @@ public class AddMemberFragment extends Fragment {
                     return;
                 }
 
-                Member member = mLibrary.addMember(mName, mAddress, mPhone);
-
-                if (member == null)
-                    Toast.makeText(getActivity(), R.string.add_member_unsuccessful_notice, Toast.LENGTH_SHORT).show();
-                else {
-                    ///Create confirm dialog
-                    mId = member.getId();
-                    FragmentManager fragmentManager = getActivity().getFragmentManager();
-                    AddMemberConfirmationDialog addMemberConfirmationDialog
-                            = AddMemberConfirmationDialog.newInstance(mName, mAddress, mPhone, mId);
-                    addMemberConfirmationDialog.setTargetFragment(AddMemberFragment.this, REQUEST_CONFIRMATION);
-                    addMemberConfirmationDialog.show(fragmentManager, DIALOG_CONFIRMATION);
+                try {
+                    Member member = mLibrary.addMember(mName, mAddress, mPhone);
+                    if (member == null)
+                        Toast.makeText(getActivity(), R.string.add_member_unsuccessful_notice, Toast.LENGTH_SHORT).show();
+                    else {
+                        ///Create confirm dialog
+                        mId = member.getId();
+                        FragmentManager fragmentManager = getActivity().getFragmentManager();
+                        AddMemberConfirmationDialog addMemberConfirmationDialog
+                                = AddMemberConfirmationDialog.newInstance(mName, mAddress, mPhone, mId);
+                        addMemberConfirmationDialog.setTargetFragment(AddMemberFragment.this, REQUEST_CONFIRMATION);
+                        addMemberConfirmationDialog.show(fragmentManager, DIALOG_CONFIRMATION);
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(getActivity(), R.string.add_member_unsuccessful_notice_member_existed,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

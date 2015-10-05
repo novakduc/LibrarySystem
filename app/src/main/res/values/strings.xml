@@ -65,4 +65,5 @@
     <string name="book_not_exist">Book not exist</string>
     <string name="issue_book_unsuccessfully">Issue book successfully</string>
     <string name="issue_book_successfully">Book has been issued</string>
+    <string name="add_member_unsuccessful_notice_member_existed">Unsuccessful register. Member already existed.</string>
 </resources>

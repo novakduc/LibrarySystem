@@ -37,9 +37,28 @@ public class MemberList {
         return mMembers.iterator();
     }
 
-    public boolean insert(Member member) {
+    public boolean insert(Member member) throws Exception {
+        Member member1 = search(member.getName());
+        if (member1 != null) {
+            if (member.getAddress().equals(member1.getAddress()))
+                throw new Exception("Member already existed");
+        }
         sNumberOfMembers++;
         return mMembers.add(member);
+    }
+
+    private Member search(String memberName) {
+        Iterator iterator = mMembers.iterator();
+        Object o;
+        while (iterator.hasNext()) {
+            o = iterator.next();
+            if (o instanceof Member) {
+                Member member = (Member) o;
+                if (member.getName().equals(memberName))
+                    return member;
+            }
+        }
+        return null;
     }
 
     public Member search(long memberId) {

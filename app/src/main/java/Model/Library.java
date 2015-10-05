@@ -28,6 +28,9 @@ public class Library {
     public static final int BOOK_PLACE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_OK = 0;
     public static final int BOOK_REMOVE_HOLD_FAIL = 3;
+    public static final int ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE = 796;
+    public static final int ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT = 797;
+    public static final int ISSUE_BOOK_FAIL_BOOK_NOT_EXIST = 798;
     private volatile static Library sUniqueInstance;
     private MemberList mMemberList;
     private Catalog mCatalog;
@@ -58,9 +61,9 @@ public class Library {
         return (member.removeHold(bookId) && book.removeHold(memberId)) ? BOOK_REMOVE_HOLD_OK : BOOK_REMOVE_HOLD_FAIL;
     }
 
-    public Member addMember(String name, String address, String phone) {
+    public Member addMember(String name, String address, String phone) throws Exception {
         Member member = new Member(name, address, phone);
-        return mMemberList.insert(member) ? member : null;
+        return (mMemberList.insert(member)) ? member : null;
     }
 
     public Book addBook(String title, String author) {
@@ -90,10 +93,12 @@ public class Library {
         return member;
     }
 
-    public Book issueBook(long bookId, Member member) {
+    public int issueBook(long bookId, Member member) {
         Book book = mCatalog.search(bookId);
-        if (book == null) return null;
-        if (book.issue(member) && member.issueBook(book)) return book;
+        if (book == null) return ISSUE_BOOK_FAIL_BOOK_NOT_EXIST;
+        if (book.issue(member) == Book.ISSUE_FAIL_NOT_AVAILABLE)
+            return ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE;
+        if () // TODO: 10/5/2015  
         return null;
     }
 

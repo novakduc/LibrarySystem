@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 public class Book {
     public static final int RENEW_OK = 0;
     public static final int ON_HOLD_RENEW_FAILED = 1;
+    public static final int ISSUE_FAIL_NOT_AVAILABLE = 2;
     private long mId;
     private String mTitle;
     private String mAuthor;
@@ -82,6 +83,7 @@ public class Book {
 
     public boolean issue(Member member) {
 
+        if (mBorrowedBy != null) // TODO: 10/5/2015  
         if (member.isInJail()) return false;
         mBorrowedBy = member;
         mDueDate = Calendar.getInstance();
