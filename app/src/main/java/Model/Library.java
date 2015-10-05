@@ -31,6 +31,7 @@ public class Library {
     public static final int ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE = 796;
     public static final int ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT = 797;
     public static final int ISSUE_BOOK_FAIL_BOOK_NOT_EXIST = 798;
+    public static final int ISSUE_BOOK_OK = 799;
     private volatile static Library sUniqueInstance;
     private MemberList mMemberList;
     private Catalog mCatalog;
@@ -96,14 +97,19 @@ public class Library {
     public int issueBook(long bookId, Member member) {
         Book book = mCatalog.search(bookId);
         if (book == null) return ISSUE_BOOK_FAIL_BOOK_NOT_EXIST;
-        if (book.issue(member) == Book.ISSUE_FAIL_NOT_AVAILABLE)
-            return ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE;
-        if () // TODO: 10/5/2015  
-        return null;
+        return issueBook(book, member);
     }
 
-    public Book issueBook(Book book, Member member) {
-        return (book.issue(member) && (member.issueBook(book))) ? book : null;
+    public int issueBook(Book book, Member member) {
+        int issueResult = book.issue(member);
+        switch (issueResult) {
+            case Book.ISSUE_FAIL_NOT_AVAILABLE:
+                return ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE;
+            case Book.ISSUE_FAIL_MEMBER_IN_JAIL:
+                return ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT;
+            default:
+                return ISSUE_BOOK_OK;
+        }
     }
 
     public Member searchMember(long memberId) {

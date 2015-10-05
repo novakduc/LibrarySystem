@@ -67,10 +67,21 @@ public class IssueBookFragment extends Fragment {
                     return;
                 }
 
-                if (mLibrary.issueBook(mBook, mMember) == null) {
-                    Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), R.string.issue_book_successfully, Toast.LENGTH_SHORT).show();
+                int issueBookResult = mLibrary.issueBook(mBook, mMember);
+                switch (issueBookResult) {
+                    case Library.ISSUE_BOOK_OK:
+                        Toast.makeText(getActivity(), R.string.issue_book_successfully,
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case Library.ISSUE_BOOK_FAIL_BOOK_NOT_AVAILABLE:
+                        Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully_book_not_available,
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case Library.ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT:
+                        Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully_member_in_jail, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully, Toast.LENGTH_SHORT).show();
                 }
             }
         });

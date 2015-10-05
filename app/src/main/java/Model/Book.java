@@ -13,6 +13,8 @@ public class Book {
     public static final int RENEW_OK = 0;
     public static final int ON_HOLD_RENEW_FAILED = 1;
     public static final int ISSUE_FAIL_NOT_AVAILABLE = 2;
+    public static final int ISSUE_FAIL_MEMBER_IN_JAIL = 3;
+    public static final int ISSUE_OK = 4;
     private long mId;
     private String mTitle;
     private String mAuthor;
@@ -81,14 +83,14 @@ public class Book {
         mHolds.add(hold);
     }
 
-    public boolean issue(Member member) {
+    public int issue(Member member) {
 
-        if (mBorrowedBy != null) // TODO: 10/5/2015  
-        if (member.isInJail()) return false;
+        if (mBorrowedBy != null) return ISSUE_FAIL_NOT_AVAILABLE;
+        if (member.isInJail()) return ISSUE_FAIL_MEMBER_IN_JAIL;
         mBorrowedBy = member;
         mDueDate = Calendar.getInstance();
         mDueDate.add(Calendar.DAY_OF_MONTH, 30);
-        return true;
+        return ISSUE_OK;
     }
 
     public long getId() {

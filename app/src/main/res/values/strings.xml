@@ -66,4 +66,6 @@
     <string name="issue_book_unsuccessfully">Issue book successfully</string>
     <string name="issue_book_successfully">Book has been issued</string>
     <string name="add_member_unsuccessful_notice_member_existed">Unsuccessful register. Member already existed.</string>
+    <string name="issue_book_unsuccessfully_book_not_available">Issue book unsuccessfully. Book is not available.</string>
+    <string name="issue_book_unsuccessfully_member_in_jail">Unsuccessful. Member already loaned 5 books</string>
 </resources>
