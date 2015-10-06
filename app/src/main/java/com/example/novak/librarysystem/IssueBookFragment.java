@@ -134,7 +134,6 @@ public class IssueBookFragment extends Fragment {
                     mMemberPhoneEditText.setText(mMember.getPhone());
                 } catch (NumberFormatException ex) {
                     Toast.makeText(getActivity(), R.string.issue_book_invalid_member_id, Toast.LENGTH_SHORT).show();
-                    ///Ranh qua viet bay
                 }
             }
         });
