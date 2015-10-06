@@ -38,10 +38,15 @@ public class MemberList {
     }
 
     public boolean insert(Member member) throws Exception {
-        Member member1 = search(member.getName());
-        if (member1 != null) {
-            if (member.getAddress().equals(member1.getAddress()))
-                throw new Exception("Member already existed");
+        Iterator iterator = mMembers.iterator();
+        Member tempMember;
+        while (iterator.hasNext()) {
+            tempMember = (Member) iterator.next();
+            if (tempMember.getName().equals(member.getName())) {
+                if (tempMember.getAddress().equals(member.getAddress())) {
+                    throw new Exception("Member already existed");
+                }
+            }
         }
         sNumberOfMembers++;
         return mMembers.add(member);
