@@ -55,6 +55,14 @@ public class MainFragment extends Fragment {
         mHelpButton = (Button) v.findViewById(R.id.help_button);
 
         //Set listener
+        mReturnBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ReturnBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mAddMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

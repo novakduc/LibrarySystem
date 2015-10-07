@@ -15,11 +15,8 @@ public class IssueBookActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        IssueBookFragment issueBookFragment =
-                (IssueBookFragment) fragmentManager.findFragmentById(R.id.issue_book_fragment_container);
-        if (issueBookFragment == null) {
-            issueBookFragment = new IssueBookFragment();
-            fragmentTransaction.add(R.id.issue_book_fragment_container, issueBookFragment);
+        if (fragmentManager.findFragmentById(R.id.issue_book_fragment_container) == null) {
+            fragmentTransaction.add(R.id.issue_book_fragment_container, new IssueBookFragment());
             fragmentTransaction.commit();
         }
     }

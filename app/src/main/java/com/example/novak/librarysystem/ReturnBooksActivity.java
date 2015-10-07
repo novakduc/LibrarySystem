@@ -5,19 +5,18 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class ReturnBooksActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_return_books);
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if (fragmentManager.findFragmentById(R.id.fragment_container) == null) {
-            MainFragment mainFragment = new MainFragment();
-            fragmentTransaction.add(R.id.fragment_container, mainFragment);
+        if (fragmentManager.findFragmentById(R.id.return_books_fragment_container) == null) {
+            fragmentTransaction.add(R.id.return_books_fragment_container, new ReturnBooksFragment());
             fragmentTransaction.commit();
         }
     }
