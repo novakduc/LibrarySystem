@@ -134,8 +134,8 @@ public class Library {
         Member member = book.returnBook();
         if (member == null) return BOOK_RETURN_FAIL_NOT_ISSUED_YET;
         member.returnBook(book);
-        if (book.hasHold()) return BOOK_RETURN_OK_NO_HOLD;
-        return BOOK_RETURN_OK_HOLD;
+        if (book.hasHold()) return BOOK_RETURN_OK_HOLD;
+        return BOOK_RETURN_OK_NO_HOLD;
     }
 
     public int removeBook(long bookId) {

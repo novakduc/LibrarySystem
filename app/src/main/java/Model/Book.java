@@ -68,7 +68,8 @@ public class Book {
     }
 
     public boolean hasHold() {
-        return mHolds.iterator().hasNext();
+        boolean b = mHolds.iterator().hasNext();
+        return b;
     }
 
     public Hold getNextHold() {
