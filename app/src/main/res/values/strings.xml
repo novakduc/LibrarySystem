@@ -68,4 +68,12 @@
     <string name="add_member_unsuccessful_notice_member_existed">Unsuccessful register. Member already existed.</string>
     <string name="issue_book_unsuccessfully_book_not_available">Issue book unsuccessfully. Book is not available.</string>
     <string name="issue_book_unsuccessfully_member_in_jail">Unsuccessful. Member already loaned 5 books</string>
+    <string name="return_book_book_id_text_view">Book ID:</string>
+    <string name="return_book_book_id_edit_text">input book id</string>
+    <string name="return_book_button">Return</string>
+    <string name="return_book_invalid_book_id">Invalid book id</string>
+    <string name="return_book_ok_no_hold">Book has returned. No hold.</string>
+    <string name="return_book_ok_has_hold">Book has returned. HAS HOLD.</string>
+    <string name="return_book_fail_not_exist">Book not exists.</string>
+    <string name="return_book_fail_not_issued_yet">Book has never been issued.</string>
 </resources>

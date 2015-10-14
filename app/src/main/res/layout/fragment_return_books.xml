@@ -1,13 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+              android:layout_height="wrap_content"
              tools:context="com.example.novak.librarysystem.ReturnBooksFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:id="@+id/textView7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="15"
+        android:text="@string/return_book_book_id_text_view"/>
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/return_book_book_id_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="55"
+        android:hint="@string/return_book_book_id_edit_text"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/return_book_return_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="30"
+        android:text="@string/return_book_button"/>
+
+</LinearLayout>
