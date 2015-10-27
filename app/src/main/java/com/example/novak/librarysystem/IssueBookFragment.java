@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import Model.Book;
-import Model.Library;
-import Model.Member;
+import model.Book;
+import model.Library;
+import model.Member;
 
 /**
  * A simple {@link Fragment} subclass.

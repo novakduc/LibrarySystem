@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.example.novak.librarysystem.dialog.AddBookConfirmationDialog;
 
-import Model.Book;
-import Model.Library;
+import model.Book;
+import model.Library;
 
 
 /**
