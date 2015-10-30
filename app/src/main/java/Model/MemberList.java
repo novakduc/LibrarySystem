@@ -10,17 +10,19 @@ import java.util.List;
 public class MemberList {
 
     private volatile static MemberList sUniqueInstance;
-    private static long sNumberOfMembers;
+    //private static long sNumberOfMembers;
     private List mMembers;
 
     private MemberList() {
-        sNumberOfMembers = 0;
+        //sNumberOfMembers = 0;
         mMembers = new ArrayList();
     }
 
+    /*
     public static long getNumberOfMembers() {
         return sNumberOfMembers;
     }
+    */
 
     public static MemberList getInstance() {
         if (sUniqueInstance == null) {
@@ -48,7 +50,7 @@ public class MemberList {
                 }
             }
         }
-        sNumberOfMembers++;
+        //sNumberOfMembers++;
         return mMembers.add(member);
     }
 

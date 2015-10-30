@@ -28,7 +28,7 @@ public class Member {
         this.mName = mName;
         this.mAddress = mAddress;
         this.mPhone = mPhone;
-        mId = MemberList.getNumberOfMembers();
+        //mId = MemberList.getNumberOfMembers();
         mIssuedBooks = new ArrayList<Book>(Library.MAX_ISSUABLE);
         mTransactions = new ArrayList<Transaction>();
         mHolds = new ArrayList<Hold>(Library.MAX_NUMBER_OF_HOLDS);
@@ -111,6 +111,10 @@ public class Member {
 
     public long getId() {
         return mId;
+    }
+
+    public void setId(long id) {
+        mId = id;
     }
 
     public String getName() {

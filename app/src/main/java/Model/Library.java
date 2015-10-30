@@ -1,9 +1,12 @@
 package Model;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import java.util.Calendar;
 import java.util.Iterator;
+
+import Model.db_processing.DatabaseManager;
 
 /**
  * Created by Novak on 9/6/2015.
@@ -33,14 +36,14 @@ public class Library {
     public static final int ISSUE_BOOK_FAIL_BOOK_NOT_EXIST = 798;
     public static final int ISSUE_BOOK_OK = 799;
     private volatile static Library sUniqueInstance;
+    private static Context sAppContext;
     private MemberList mMemberList;
     private Catalog mCatalog;
-    private Context mAppContext;
 
     private Library(Context appContext) {
         mMemberList = MemberList.getInstance();
         mCatalog = Catalog.getInstance();
-        mAppContext = appContext;
+        sAppContext = appContext;
     }
 
     public static Library getInstance(Context appContext) {
@@ -48,6 +51,7 @@ public class Library {
             synchronized (Library.class) {
                 if (sUniqueInstance == null) {
                     sUniqueInstance = new Library(appContext);
+                    new LoadingData().execute();
                 }
             }
         }
@@ -64,6 +68,12 @@ public class Library {
 
     public Member addMember(String name, String address, String phone) throws Exception {
         Member member = new Member(name, address, phone);
+        //writing member to DB
+        DatabaseManager databaseManager = new DatabaseManager(sAppContext);
+        long memberId = databaseManager.addMember(member);
+        if (memberId == -1)
+            return null;
+        member.setId(memberId);
         return (mMemberList.insert(member)) ? member : null;
     }
 
@@ -155,5 +165,14 @@ public class Library {
 
     public Book searchBook(long id) {
         return mCatalog.search(id);
+    }
+
+    private static class LoadingData extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            DatabaseManager databaseManager = new DatabaseManager(sAppContext);
+            databaseManager.getAllMembers();
+            return null;
+        }
     }
 }

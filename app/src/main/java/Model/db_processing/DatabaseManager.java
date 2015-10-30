@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import com.example.novak.librarysystem.R;
 
 import Model.Member;
 import Model.MemberList;
@@ -13,16 +16,16 @@ import Model.MemberList;
  * Created by n.thanh on 10/27/2015.
  */
 public class DatabaseManager {
-    private static final String DB_NAME = "library";
-    private static final int DB_VERSION = 1;
-    private static final String MEMBER_TABLE = "member_table";
-    private static final String MEMBER_ID_ROW = "_id";
-    private static final String MEMBER_NAME_ROW = "member_name";
-    private static final String MEMBER_PHONE_ROW = "member_phone";
-    private static final String MEMBER_ADDRESS_ROW = "member_address";
-    private static final String MEMBER_STATUS_ROW = "member_status";
-    private static final String MEMBER_IN_JAIL_ROW = "member_in_jail";
-    private static final String CREATE_TABLE_MEMBER =
+    public static final String DB_NAME = "library";
+    public static final int DB_VERSION = 1;
+    public static final String MEMBER_TABLE = "member_table";
+    public static final String MEMBER_ID_ROW = "_id";
+    public static final String MEMBER_NAME_ROW = "member_name";
+    public static final String MEMBER_PHONE_ROW = "member_phone";
+    public static final String MEMBER_ADDRESS_ROW = "member_address";
+    public static final String MEMBER_STATUS_ROW = "member_status";
+    public static final String MEMBER_IN_JAIL_ROW = "member_in_jail";
+    public static final String CREATE_TABLE_MEMBER =
             "CREATE TABLE " + MEMBER_TABLE + "("
                     + MEMBER_ID_ROW + " INTEGER PRIMARY KEY,"
                     + MEMBER_NAME_ROW + " TEXT,"
@@ -30,34 +33,34 @@ public class DatabaseManager {
                     + MEMBER_ADDRESS_ROW + " TEXT,"
                     + MEMBER_STATUS_ROW + " INTEGER,"
                     + MEMBER_IN_JAIL_ROW + " INTEGER" + ");";
-    private static final String BOOK_TABLE = "BOOK_TABLE";
-    private static final String BOOK_ID_ROW = "_ID";
-    private static final String BOOK_TITLE_ROW = "BOOK_TITLE";
-    private static final String BOOK_AUTHOR_ROW = "BOOK_AUTHOR";
-    private static final String BOOK_BORROWED_BY = "BOOK_BORROWED_BY";
-    private static final String BOOK_DUE_DATE = "BOOK_DUE_DATE";
-    private static final String CREATE_TABLE_BOOK =
+    public static final String BOOK_TABLE = "BOOK_TABLE";
+    public static final String BOOK_ID_ROW = "_ID";
+    public static final String BOOK_TITLE_ROW = "BOOK_TITLE";
+    public static final String BOOK_AUTHOR_ROW = "BOOK_AUTHOR";
+    public static final String BOOK_BORROWED_BY = "BOOK_BORROWED_BY";
+    public static final String BOOK_DUE_DATE = "BOOK_DUE_DATE";
+    public static final String CREATE_TABLE_BOOK =
             "CREATE TABLE " + BOOK_TABLE + "("
                     + BOOK_ID_ROW + " INTEGER PRIMARY KEY,"
                     + BOOK_TITLE_ROW + " TEXT,"
                     + BOOK_AUTHOR_ROW + " TEXT,"
                     + BOOK_BORROWED_BY + " INTEGER,"
                     + BOOK_DUE_DATE + " INTEGER" + ");";
-    private static final String HOLD_TABLE = "HOLD_TABLE";
-    private static final String HOLD_MEMBER_ID = "MEMBER_ID";
-    private static final String HOLD_BOOK_ID = "BOOK_ID";
-    private static final String HOLD_END_DATE = "HOLD_END_DATE";
-    private static final String CREATE_TABLE_HOLD =
+    public static final String HOLD_TABLE = "HOLD_TABLE";
+    public static final String HOLD_MEMBER_ID = "MEMBER_ID";
+    public static final String HOLD_BOOK_ID = "BOOK_ID";
+    public static final String HOLD_END_DATE = "HOLD_END_DATE";
+    public static final String CREATE_TABLE_HOLD =
             "CREATE TABLE " + HOLD_TABLE + "("
                     + HOLD_MEMBER_ID + " INTEGER,"
                     + HOLD_BOOK_ID + " TEXT,"
                     + HOLD_END_DATE + " INTEGER" + ");";
-    private static final String TRANSACTION_TABLE = "TRANSACTION_TABLE";
-    private static final String TRANSACTION_MEMBER_ID = "TRANSACTION_MEMBER_ID";
-    private static final String TRANSACTION_BOOK_ID = "TRANSACTION_BOOK_ID";
-    private static final String TRANSACTION_TYPE = "TRANSACTION_TYPE";
-    private static final String TRANSACTION_DATE = "TRANSACTION_DATE";
-    private static final String CREATE_TABLE_TRANSACTION =
+    public static final String TRANSACTION_TABLE = "TRANSACTION_TABLE";
+    public static final String TRANSACTION_MEMBER_ID = "TRANSACTION_MEMBER_ID";
+    public static final String TRANSACTION_BOOK_ID = "TRANSACTION_BOOK_ID";
+    public static final String TRANSACTION_TYPE = "TRANSACTION_TYPE";
+    public static final String TRANSACTION_DATE = "TRANSACTION_DATE";
+    public static final String CREATE_TABLE_TRANSACTION =
             "CREATE TABLE " + TRANSACTION_TABLE + "("
                     + TRANSACTION_MEMBER_ID + " INTEGER,"
                     + TRANSACTION_BOOK_ID + " INTEGER,"
@@ -74,16 +77,16 @@ public class DatabaseManager {
     }
 
     public long addMember(Member member) {
+        mDatabase = mHelper.getWritableDatabase();
+
         ContentValues values = new ContentValues();
-        values.put(MEMBER_ID_ROW, member.getId());
+        //values.put(MEMBER_ID_ROW, member.getId());
         values.put(MEMBER_NAME_ROW, member.getName());
         values.put(MEMBER_PHONE_ROW, member.getPhone());
         values.put(MEMBER_ADDRESS_ROW, member.getAddress());
         values.put(MEMBER_STATUS_ROW, member.getStatus());
         values.put(MEMBER_IN_JAIL_ROW, (member.isInJail() ? 1 : 0));
 
-
-        mDatabase = mHelper.getWritableDatabase();
         return mDatabase.insert(MEMBER_TABLE, null, values);
     }
 
@@ -95,14 +98,26 @@ public class DatabaseManager {
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
-           /*
             do {
-                String memberName;
-                //Member member = new Member();
-                //dfskjldf
+                String memberName, memberAddress, memberPhone;
+                memberName = cursor.getString(cursor.getColumnIndex(MEMBER_NAME_ROW));
+                memberAddress = cursor.getString(cursor.getColumnIndex(MEMBER_ADDRESS_ROW));
+                memberPhone = cursor.getString(cursor.getColumnIndex(MEMBER_PHONE_ROW));
 
-            } // TODO: 10/27/2015 id problem - should initial id during inserting item
-            */
+                Member member = new Member(memberName, memberAddress, memberPhone);
+                member.setId(cursor.getLong(cursor.getColumnIndex(MEMBER_ID_ROW)));
+                boolean b = (cursor.getInt(cursor.getColumnIndex(MEMBER_IN_JAIL_ROW)) == 1);
+                member.setIsInJail(b);
+                member.setStatus(cursor.getInt(cursor.getColumnIndex(MEMBER_STATUS_ROW)));
+                // TODO: 10/30/2015 reading Hold data
+                // TODO: 10/30/2015 reading ISSUED BOOKS DATA
+                // TODO: 10/30/2015 reading TRANSACTION DATA
+                try {
+                    memberList.insert(member);
+                } catch (Exception e) {
+                    Toast.makeText(mContext, R.string.member_data_read_overlap_error, Toast.LENGTH_SHORT).show();
+                }
+            } while (cursor.moveToNext());
         }
     }
 
