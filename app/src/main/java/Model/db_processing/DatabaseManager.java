@@ -5,9 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
-
-import com.example.novak.librarysystem.R;
 
 import Model.Member;
 import Model.MemberList;
@@ -77,6 +74,8 @@ public class DatabaseManager {
     }
 
     public long addMember(Member member) {
+
+        if (search(member) != null) return -1;
         mDatabase = mHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -90,7 +89,25 @@ public class DatabaseManager {
         return mDatabase.insert(MEMBER_TABLE, null, values);
     }
 
-    public void getAllMembers() {
+    public Member search(Member member) {
+        String selectQuery = "SELECT * FROM " + MEMBER_TABLE + " WHERE "
+                + MEMBER_NAME_ROW + " = " + member.getName();
+        mDatabase = mHelper.getWritableDatabase();
+
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String address = cursor.getString(cursor.getColumnIndex(MEMBER_ADDRESS_ROW));
+                if (address.equals(member.getAddress())) {
+                    return member;
+                }
+            } while (cursor.moveToNext());
+        }
+        return null;
+    }
+
+    public void getAllMembers() throws Exception {
         String selectQuery = "SELECT * FROM " + MEMBER_TABLE;
         mDatabase = mHelper.getWritableDatabase();
         MemberList memberList = MemberList.getInstance();
@@ -112,11 +129,7 @@ public class DatabaseManager {
                 // TODO: 10/30/2015 reading Hold data
                 // TODO: 10/30/2015 reading ISSUED BOOKS DATA
                 // TODO: 10/30/2015 reading TRANSACTION DATA
-                try {
-                    memberList.insert(member);
-                } catch (Exception e) {
-                    Toast.makeText(mContext, R.string.member_data_read_overlap_error, Toast.LENGTH_SHORT).show();
-                }
+                memberList.insert(member);
             } while (cursor.moveToNext());
         }
     }

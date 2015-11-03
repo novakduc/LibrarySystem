@@ -2,6 +2,10 @@ package Model;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.novak.librarysystem.R;
 
 import java.util.Calendar;
 import java.util.Iterator;
@@ -72,7 +76,7 @@ public class Library {
         DatabaseManager databaseManager = new DatabaseManager(sAppContext);
         long memberId = databaseManager.addMember(member);
         if (memberId == -1)
-            return null;
+            throw new Exception("Member already existed");
         member.setId(memberId);
         return (mMemberList.insert(member)) ? member : null;
     }
@@ -169,10 +173,34 @@ public class Library {
 
     private static class LoadingData extends AsyncTask<Void, Void, Void> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d("LoadingData", "Start restoring data");
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
+            Log.d("LoadingData", "Loading...");
             DatabaseManager databaseManager = new DatabaseManager(sAppContext);
-            databaseManager.getAllMembers();
+            try {
+                databaseManager.getAllMembers();
+            } catch (Exception e) {
+                publishProgress();
+            }
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+            Log.d("LoadingData", "Data overlap");
+            Toast.makeText(sAppContext, R.string.member_data_read_overlap_error, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Log.d("LoadingData", "Finish loading data");
         }
     }
 }
