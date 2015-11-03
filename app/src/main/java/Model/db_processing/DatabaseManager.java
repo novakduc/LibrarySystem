@@ -82,7 +82,7 @@ public class DatabaseManager {
                 + " AND " + MEMBER_ADDRESS_ROW + " = " + "'" + member.getAddress() + "'" + ")";
 
         Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-
+        //if member already existed return invalid id.
         if (cursor.moveToFirst()) {
             cursor.close();
             return -1;
