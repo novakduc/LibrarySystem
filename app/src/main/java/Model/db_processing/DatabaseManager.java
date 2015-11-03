@@ -74,10 +74,22 @@ public class DatabaseManager {
     }
 
     public long addMember(Member member) {
-
-        if (search(member) != null) return -1;
         mDatabase = mHelper.getWritableDatabase();
 
+        //Confirm whether member already in registered
+        String selectQuery = "SELECT * FROM " + MEMBER_TABLE + " WHERE "
+                + "(" + MEMBER_NAME_ROW + " = " + "'" + member.getName() + "'"
+                + " AND " + MEMBER_ADDRESS_ROW + " = " + "'" + member.getAddress() + "'" + ")";
+
+        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            return -1;
+        }
+        cursor.close();
+
+        //member has not been registered
         ContentValues values = new ContentValues();
         //values.put(MEMBER_ID_ROW, member.getId());
         values.put(MEMBER_NAME_ROW, member.getName());
@@ -87,24 +99,6 @@ public class DatabaseManager {
         values.put(MEMBER_IN_JAIL_ROW, (member.isInJail() ? 1 : 0));
 
         return mDatabase.insert(MEMBER_TABLE, null, values);
-    }
-
-    public Member search(Member member) {
-        String selectQuery = "SELECT * FROM " + MEMBER_TABLE + " WHERE "
-                + MEMBER_NAME_ROW + " = " + member.getName();
-        mDatabase = mHelper.getWritableDatabase();
-
-        Cursor cursor = mDatabase.rawQuery(selectQuery, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                String address = cursor.getString(cursor.getColumnIndex(MEMBER_ADDRESS_ROW));
-                if (address.equals(member.getAddress())) {
-                    return member;
-                }
-            } while (cursor.moveToNext());
-        }
-        return null;
     }
 
     public void getAllMembers() throws Exception {
@@ -129,9 +123,16 @@ public class DatabaseManager {
                 // TODO: 10/30/2015 reading Hold data
                 // TODO: 10/30/2015 reading ISSUED BOOKS DATA
                 // TODO: 10/30/2015 reading TRANSACTION DATA
-                memberList.insert(member);
+                try {
+                    memberList.insert(member);
+                } catch (Exception e) {
+                    cursor.close();
+                    throw e;
+                }
+
             } while (cursor.moveToNext());
         }
+        cursor.close();
     }
 
     private class LibrarySQLiteOpenHelper extends SQLiteOpenHelper {

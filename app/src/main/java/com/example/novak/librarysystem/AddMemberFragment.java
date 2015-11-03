@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,7 @@ public class AddMemberFragment extends Fragment {
                         addMemberConfirmationDialog.show(fragmentManager, DIALOG_CONFIRMATION);
                     }
                 } catch (Exception ex) {
+                    Log.e("Add member error", ex.getMessage());
                     Toast.makeText(getActivity(), R.string.add_member_unsuccessful_notice_member_existed,
                             Toast.LENGTH_SHORT).show();
                 }
@@ -105,6 +107,4 @@ public class AddMemberFragment extends Fragment {
         });
         return v;
     }
-
-
 }
