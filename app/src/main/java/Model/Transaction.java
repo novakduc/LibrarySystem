@@ -21,6 +21,14 @@ public class Transaction {
     public Transaction(String bookTitle, String type) {
         mBookTitle = bookTitle;
         mType = type;
+        mDate = Calendar.getInstance();
+    }
+
+    public Transaction(String bookTitle, String type, long date) {
+        mBookTitle = bookTitle;
+        mType = type;
+        mDate = Calendar.getInstance();
+        mDate.setTimeInMillis(date);
     }
 
     public boolean OnDate(Calendar date) {

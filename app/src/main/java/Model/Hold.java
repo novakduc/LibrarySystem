@@ -7,15 +7,21 @@ import java.util.Calendar;
  */
 public class Hold {
     private Calendar mEndDate;
-    private Book mBook;
-    private Member mMember;
+    private long mBookId;
+    private long mMemberId;
 
     private Hold() {
     }
 
+    public Hold(long bookId, long memberId, long endDate) {
+        mBookId = bookId;
+        mMemberId = memberId;
+        mEndDate.setTimeInMillis(endDate);
+    }
+
     public Hold(Book book, Member member, int numberOfDays) {
-        this.mBook = book;
-        this.mMember = member;
+        this.mBookId = book.getId();
+        this.mMemberId = member.getId();
         int tempNumberOfDays = numberOfDays;
         if (tempNumberOfDays > Library.MAX_HOLD_DAYS)
             tempNumberOfDays = Library.MAX_HOLD_DAYS;
@@ -28,11 +34,11 @@ public class Hold {
     }
 
     public Book getBook() {
-        return mBook;
+        return Catalog.getInstance().search(mBookId);
     }
 
     public Member getMember() {
-        return mMember;
+        return MemberList.getInstance().search(mMemberId);
     }
 
     public boolean isValided() {

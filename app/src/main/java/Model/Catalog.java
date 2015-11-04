@@ -8,17 +8,11 @@ import java.util.List;
  * Created by Novak on 9/6/2015.
  */
 public class Catalog {
-    public static long sNumberOfBooks;
     private volatile static Catalog sUniqueInstance;
     private List mBooks;
 
     private Catalog() {
-        sNumberOfBooks = 0;
         mBooks = new ArrayList();
-    }
-
-    public static long getNumberOfBooks() {
-        return sNumberOfBooks;
     }
 
     public static Catalog getInstance() {
@@ -50,7 +44,6 @@ public class Catalog {
     }
 
     public boolean insert(Book book) {
-        sNumberOfBooks++;
         return mBooks.add(book);
     }
 

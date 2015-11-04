@@ -62,12 +62,17 @@ public class Library {
         return sUniqueInstance;
     }
 
+    public static Context getAppContext() {
+        return sAppContext;
+    }
+
     public int removeHold(long memberId, long bookId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return REMOVE_HOLD_FAIL_MEMBER_NOT_EXIST;
         Book book = mCatalog.search(bookId);
         if (book == null) return REMOVE_HOLD_FAIL_BOOK_NOT_EXIST;
-        return (member.removeHold(bookId) && book.removeHold(memberId)) ? BOOK_REMOVE_HOLD_OK : BOOK_REMOVE_HOLD_FAIL;
+        return (member.removeHold(bookId) && book.removeHold(memberId)) ?
+                BOOK_REMOVE_HOLD_OK : BOOK_REMOVE_HOLD_FAIL;
     }
 
     public Member addMember(String name, String address, String phone) throws Exception {
@@ -83,6 +88,14 @@ public class Library {
 
     public Book addBook(String title, String author) {
         Book book = new Book(title, author);
+        //writing to DB
+        long bookId = -1;
+        DatabaseManager databaseManager = new DatabaseManager(sAppContext);
+        bookId = databaseManager.addBook(book);
+        if (bookId == -1) {
+            return null;
+        }
+        book.setId(bookId);
         return mCatalog.insert(book) ? book : null;
     }
 
@@ -122,6 +135,7 @@ public class Library {
             case Book.ISSUE_FAIL_MEMBER_IN_JAIL:
                 return ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT;
             default:
+                member.issueBook(book);
                 return ISSUE_BOOK_OK;
         }
     }
@@ -183,7 +197,7 @@ public class Library {
             Log.d("LoadingData", "Loading...");
             DatabaseManager databaseManager = new DatabaseManager(sAppContext);
             try {
-                databaseManager.getAllMembers();
+                databaseManager.loadAllData();
             } catch (Exception e) {
                 publishProgress();
             }
@@ -201,6 +215,17 @@ public class Library {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Log.d("LoadingData", "Finish loading data");
+        }
+    }
+
+    private class UpdateData extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Log.i("UpdateData", "Updating data");
+            DatabaseManager databaseManager = new DatabaseManager(sAppContext);
+            databaseManager.update();
+            return null;
         }
     }
 }

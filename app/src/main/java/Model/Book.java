@@ -19,30 +19,32 @@ public class Book {
     private String mTitle;
     private String mAuthor;
     private List<Hold> mHolds;
-    private Member mBorrowedBy;
+    private long mBorrowedBy;       //id of borrower
     private Calendar mDueDate;
 
     private Book() {
     }
 
     public Book(String title, String author) {
-        mId = Catalog.getNumberOfBooks();
+        //mId = Catalog.getNumberOfBooks();
         mTitle = title;
         mAuthor = author;
+        mBorrowedBy = -1;
         mHolds = new ArrayList<Hold>();
     }
 
     public Member returnBook() {
         mDueDate = null;
-        Member member = mBorrowedBy;
-        mBorrowedBy = null;
+        Member member = MemberList.getInstance().search(mBorrowedBy);
+        mBorrowedBy = -1;
         return member;
     }
 
     public int renewBook() {
         if (mHolds.isEmpty()) {
             mDueDate.add(Calendar.DAY_OF_MONTH, 30);
-            mBorrowedBy.addTransaction(new Transaction(mTitle, Transaction.RENEW_TRANSACTION));
+            MemberList.getInstance().search(mBorrowedBy).addTransaction(
+                    new Transaction(mTitle, Transaction.RENEW_TRANSACTION));
             return Book.RENEW_OK;
         } else
             return ON_HOLD_RENEW_FAILED;
@@ -86,9 +88,9 @@ public class Book {
 
     public int issue(Member member) {
 
-        if (mBorrowedBy != null) return ISSUE_FAIL_NOT_AVAILABLE;
+        if (mBorrowedBy != -1) return ISSUE_FAIL_NOT_AVAILABLE;
         if (member.isInJail()) return ISSUE_FAIL_MEMBER_IN_JAIL;
-        mBorrowedBy = member;
+        mBorrowedBy = member.getId();
         mDueDate = Calendar.getInstance();
         mDueDate.add(Calendar.DAY_OF_MONTH, 30);
         return ISSUE_OK;
@@ -96,6 +98,10 @@ public class Book {
 
     public long getId() {
         return mId;
+    }
+
+    public void setId(long id) {
+        mId = id;
     }
 
     public String getTitle() {
@@ -111,10 +117,23 @@ public class Book {
     }
 
     public Member getBorrowedBy() {
+        return MemberList.getInstance().search(mBorrowedBy);
+    }
+
+    public Long getBorrowerId() {
         return mBorrowedBy;
+    }
+
+    public void setBorrower(Long memberId) {
+        mBorrowedBy = memberId;
     }
 
     public Calendar getDueDate() {
         return mDueDate;
+    }
+
+    public void setDueDate(Long dueDate) {
+        mDueDate = Calendar.getInstance();
+        mDueDate.setTimeInMillis(dueDate);
     }
 }

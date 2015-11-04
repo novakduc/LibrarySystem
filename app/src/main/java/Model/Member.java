@@ -17,7 +17,7 @@ public class Member {
     private String mPhone;
     private List<Transaction> mTransactions;
     private List<Hold> mHolds;
-    private List<Book> mIssuedBooks;
+    private List<Long> mIssuedBooks;
     private int mStatus;
     private boolean mIsInJail;
 
@@ -29,7 +29,7 @@ public class Member {
         this.mAddress = mAddress;
         this.mPhone = mPhone;
         //mId = MemberList.getNumberOfMembers();
-        mIssuedBooks = new ArrayList<Book>(Library.MAX_ISSUABLE);
+        mIssuedBooks = new ArrayList<Long>(Library.MAX_ISSUABLE);
         mTransactions = new ArrayList<Transaction>();
         mHolds = new ArrayList<Hold>(Library.MAX_NUMBER_OF_HOLDS);
         mIsInJail = false;
@@ -54,8 +54,12 @@ public class Member {
 
     public boolean issueBook(Book book) {
         mTransactions.add(new Transaction(book.getTitle(), Transaction.ISSUE_TRANSACTION));
-        if (!mIsInJail) return mIssuedBooks.add(book);
+        if (!mIsInJail) return mIssuedBooks.add(book.getId());
         else return false;
+    }
+
+    public boolean addIssueBook(Long bookId) {
+        return mIssuedBooks.add(bookId);
     }
 
     private void updateJailStatus() {
@@ -107,6 +111,17 @@ public class Member {
 
     public Iterator getIssuedBooks() {
         return mIssuedBooks.iterator();
+    }
+
+    public Transaction getLastTransaction() {
+        Transaction lastTrans = mTransactions.get(0);
+        for (Transaction t
+                : mTransactions) {
+            if (t.getDate().after(lastTrans.getDate())) {
+                lastTrans = t;
+            }
+        }
+        return lastTrans;
     }
 
     public long getId() {
