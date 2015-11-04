@@ -136,6 +136,7 @@ public class Library {
                 return ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT;
             default:
                 member.issueBook(book);
+                new UpdateData().execute(member, book);
                 return ISSUE_BOOK_OK;
         }
     }
@@ -218,13 +219,15 @@ public class Library {
         }
     }
 
-    private class UpdateData extends AsyncTask<Void, Void, Void> {
+    private class UpdateData extends AsyncTask<Object, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Object... params) {
             Log.i("UpdateData", "Updating data");
+            Member member = (Member) params[0];
+            Book book = (Book) params[1];
             DatabaseManager databaseManager = new DatabaseManager(sAppContext);
-            databaseManager.update();
+            databaseManager.update(member, book);
             return null;
         }
     }
