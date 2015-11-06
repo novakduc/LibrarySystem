@@ -136,6 +136,7 @@ public class Library {
                 return ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT;
             default:
                 member.issueBook(book);
+                //Update to DB
                 new UpdateData().execute(member, book);
                 return ISSUE_BOOK_OK;
         }
@@ -163,6 +164,8 @@ public class Library {
         Member member = book.returnBook();
         if (member == null) return BOOK_RETURN_FAIL_NOT_ISSUED_YET;
         member.returnBook(book);
+        //Update to DB
+        new UpdateData().execute(member, book);
         if (book.hasHold()) return BOOK_RETURN_OK_HOLD;
         return BOOK_RETURN_OK_NO_HOLD;
     }

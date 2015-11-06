@@ -44,7 +44,7 @@ public class AddBooksFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLibrary = Library.getInstance(getActivity());
+        mLibrary = Library.getInstance(getActivity().getApplicationContext());
     }
 
     @Override

@@ -21,7 +21,6 @@ public class ReturnBooksFragment extends Fragment {
     private Library mLibrary;
     private long mBookId;
     private EditText mBookIdEditText;
-    private Button mReturnBookButton;
 
     public ReturnBooksFragment() {
         // Required empty public constructor
@@ -32,12 +31,12 @@ public class ReturnBooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mLibrary = Library.getInstance(getActivity());
+        mLibrary = Library.getInstance(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_return_books, container, false);
         mBookIdEditText = (EditText) view.findViewById(R.id.return_book_book_id_edit_text);
-        mReturnBookButton = (Button) view.findViewById(R.id.return_book_return_button);
+        Button returnBookButton = (Button) view.findViewById(R.id.return_book_return_button);
 
-        mReturnBookButton.setOnClickListener(new View.OnClickListener() {
+        returnBookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String s = mBookIdEditText.getText().toString();
