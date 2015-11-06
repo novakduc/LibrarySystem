@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".ReturnBooksActivity">
         </activity>
+        <activity android:name=".RenewBooksActivity">
+        </activity>
     </application>
 
 </manifest>

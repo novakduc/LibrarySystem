@@ -75,4 +75,7 @@
     <string name="return_book_fail_not_exist">Book not exists.</string>
     <string name="return_book_fail_not_issued_yet">Book has never been issued.</string>
     <string name="member_data_read_overlap_error">Member data already loaded</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
