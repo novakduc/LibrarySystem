@@ -66,7 +66,6 @@ public class AddMemberFragment extends Fragment {
         addMemberRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 10/5/2015 Duplicate register still happen sometimes.
                 mName = mAddMemberNameEditText.getText().toString();
                 if (mName.length() == 0) {
                     Toast.makeText(getActivity(), R.string.add_member_null_name_error, Toast.LENGTH_SHORT).show();
