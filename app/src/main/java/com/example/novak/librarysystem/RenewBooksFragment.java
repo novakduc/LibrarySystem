@@ -26,5 +26,4 @@ public class RenewBooksFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_renew_books, container, false);
     }
-
 }
