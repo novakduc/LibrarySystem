@@ -12,7 +12,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/renew_book_loan_list_fragment"
+        android:id="@+id/renew_book_loan_list_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </FrameLayout>
