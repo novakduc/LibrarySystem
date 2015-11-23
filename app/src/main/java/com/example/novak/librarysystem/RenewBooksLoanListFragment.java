@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RenewBooksFragment extends Fragment {
+public class RenewBooksLoanListFragment extends Fragment {
 
 
-    public RenewBooksFragment() {
+    public RenewBooksLoanListFragment() {
         // Required empty public constructor
     }
 
@@ -24,6 +24,6 @@ public class RenewBooksFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_renew_books, container, false);
+        return inflater.inflate(R.layout.fragment_loanbook_list, container, false);
     }
 }

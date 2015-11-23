@@ -16,7 +16,7 @@ public class RenewBooksActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         if (fragmentManager.findFragmentById(R.id.renew_books_member_id_fragment_container) == null) {
-            transaction.add(R.id.renew_books_member_id_fragment_container, new RenewBooksFragment());
+            transaction.add(R.id.renew_books_member_id_fragment_container, new RenewBooksMemberIdFragment());
             transaction.commit();
         }
     }
