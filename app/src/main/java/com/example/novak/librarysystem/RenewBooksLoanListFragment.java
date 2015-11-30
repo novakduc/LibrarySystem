@@ -4,8 +4,13 @@ package com.example.novak.librarysystem;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import java.util.List;
+
+import Model.Book;
 import Model.Catalog;
 
 
@@ -30,13 +35,22 @@ public class RenewBooksLoanListFragment extends ListFragment {
         setListAdapter(adapter);
         //*/
     }
-/*
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_loanbook, container, false);
+    private class BookListAdapter extends ArrayAdapter {
+
+        public BookListAdapter(List books) {
+            super(getActivity(), 0, books);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(R.layout.fragment_loanbook, null);
+            }
+
+            Book book = (Book) getItem(position);
+            return super.getView(position, convertView, parent);
+        }
     }
-*/
 }
