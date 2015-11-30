@@ -1,5 +1,7 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -15,6 +17,7 @@ public class Book {
     public static final int ISSUE_FAIL_NOT_AVAILABLE = 2;
     public static final int ISSUE_FAIL_MEMBER_IN_JAIL = 3;
     public static final int ISSUE_OK = 4;
+    private static Context sAppContext;
     private long mId;
     private String mTitle;
     private String mAuthor;
@@ -25,18 +28,24 @@ public class Book {
     private Book() {
     }
 
-    public Book(String title, String author) {
+    public Book(Context context, String title, String author) {
         //mId = Catalog.getNumberOfBooks();
         mTitle = title;
         mAuthor = author;
         mBorrowedBy = -1;
         mDueDate = null;
         mHolds = new ArrayList<Hold>();
+        sAppContext = context;
+    }
+
+    @Override
+    public String toString() {
+        return getTitle();
     }
 
     public Member returnBook() {
         mDueDate = null;
-        Member member = MemberList.getInstance().search(mBorrowedBy);
+        Member member = MemberList.getInstance(sAppContext).search(mBorrowedBy);
         mBorrowedBy = -1;
         return member;
     }
@@ -44,7 +53,7 @@ public class Book {
     public int renewBook() {
         if (mHolds.isEmpty()) {
             mDueDate.add(Calendar.DAY_OF_MONTH, 30);
-            MemberList.getInstance().search(mBorrowedBy).addTransaction(
+            MemberList.getInstance(sAppContext).search(mBorrowedBy).addTransaction(
                     new Transaction(mTitle, Transaction.RENEW_TRANSACTION));
             return Book.RENEW_OK;
         } else
@@ -118,7 +127,7 @@ public class Book {
     }
 
     public Member getBorrowedBy() {
-        return MemberList.getInstance().search(mBorrowedBy);
+        return MemberList.getInstance(sAppContext).search(mBorrowedBy);
     }
 
     public Long getBorrowerId() {

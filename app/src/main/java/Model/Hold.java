@@ -1,11 +1,14 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.Calendar;
 
 /**
  * Created by Novak on 9/6/2015.
  */
 public class Hold {
+    private static Context sAppContext;
     private Calendar mEndDate;
     private long mBookId;
     private long mMemberId;
@@ -13,13 +16,14 @@ public class Hold {
     private Hold() {
     }
 
-    public Hold(long bookId, long memberId, long endDate) {
+    public Hold(Context context, long bookId, long memberId, long endDate) {
         mBookId = bookId;
         mMemberId = memberId;
         mEndDate.setTimeInMillis(endDate);
+        sAppContext = context;
     }
 
-    public Hold(Book book, Member member, int numberOfDays) {
+    public Hold(Context context, Book book, Member member, int numberOfDays) {
         this.mBookId = book.getId();
         this.mMemberId = member.getId();
         int tempNumberOfDays = numberOfDays;
@@ -31,14 +35,15 @@ public class Hold {
         }
         mEndDate = Calendar.getInstance();
         mEndDate.add(Calendar.DAY_OF_MONTH, tempNumberOfDays);
+        sAppContext = context;
     }
 
     public Book getBook() {
-        return Catalog.getInstance().search(mBookId);
+        return Catalog.getInstance(sAppContext).search(mBookId);
     }
 
     public Member getMember() {
-        return MemberList.getInstance().search(mMemberId);
+        return MemberList.getInstance(sAppContext).search(mMemberId);
     }
 
     public boolean isValided() {

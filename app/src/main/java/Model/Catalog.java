@@ -1,5 +1,7 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,17 +11,19 @@ import java.util.List;
  */
 public class Catalog {
     private volatile static Catalog sUniqueInstance;
+    private static Context sAppContext;
     private List mBooks;
 
-    private Catalog() {
+    private Catalog(Context context) {
         mBooks = new ArrayList();
+        sAppContext = context;
     }
 
-    public static Catalog getInstance() {
+    public static Catalog getInstance(Context context) {
         if (sUniqueInstance == null) {
             synchronized (Catalog.class) {
                 if (sUniqueInstance == null) {
-                    sUniqueInstance = new Catalog();
+                    sUniqueInstance = new Catalog(context);
                 }
             }
         }

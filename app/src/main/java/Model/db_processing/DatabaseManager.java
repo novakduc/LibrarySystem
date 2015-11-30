@@ -157,7 +157,7 @@ public class DatabaseManager {
         mDatabase = mHelper.getWritableDatabase();
 
         ///////Loading all books in database to Catalog
-        Catalog catalog = Catalog.getInstance();
+        Catalog catalog = Catalog.getInstance(mContext);
         String bookSelectQuery = "SELECT * FROM " + BOOK_TABLE;
         Cursor bookCursor = mDatabase.rawQuery(bookSelectQuery, null);
         if (bookCursor.moveToFirst()) {
@@ -166,7 +166,7 @@ public class DatabaseManager {
                 title = bookCursor.getString(bookCursor.getColumnIndex(BOOK_TITLE_ROW));
                 author = bookCursor.getString(bookCursor.getColumnIndex(BOOK_AUTHOR_ROW));
 
-                Book book = new Book(title, author);
+                Book book = new Book(mContext, title, author);
                 book.setId(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_ID_ROW)));
                 book.setBorrower(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_BORROWED_BY)));
                 long dueDate = bookCursor.getLong(bookCursor.getColumnIndex(BOOK_DUE_DATE));
@@ -184,7 +184,7 @@ public class DatabaseManager {
                         holdMemberId = holdCursor.getLong(holdCursor.getColumnIndex(HOLD_BOOK_ID));
                         holdEndDate = holdCursor.getLong(holdCursor.getColumnIndex(HOLD_END_DATE));
 
-                        Hold hold = new Hold(book.getId(), holdMemberId, holdEndDate);
+                        Hold hold = new Hold(mContext, book.getId(), holdMemberId, holdEndDate);
                         book.placeHold(hold);
                     } while (holdCursor.moveToNext());
                 }
@@ -196,7 +196,7 @@ public class DatabaseManager {
         bookCursor.close();
 
         //////Loading all members in data to MemberList instance
-        MemberList memberList = MemberList.getInstance();
+        MemberList memberList = MemberList.getInstance(mContext);
         String memberSelectQuery = "SELECT * FROM " + MEMBER_TABLE;
         Cursor cursor = mDatabase.rawQuery(memberSelectQuery, null);
 
@@ -223,7 +223,7 @@ public class DatabaseManager {
                         holdBookId = holdCursor.getLong(holdCursor.getColumnIndex(HOLD_BOOK_ID));
                         holdEndDate = holdCursor.getLong(holdCursor.getColumnIndex(HOLD_END_DATE));
 
-                        Hold hold = new Hold(holdBookId, member.getId(), holdEndDate);
+                        Hold hold = new Hold(mContext, holdBookId, member.getId(), holdEndDate);
                         member.placeHold(hold);
                     } while (holdCursor.moveToNext());
                 }

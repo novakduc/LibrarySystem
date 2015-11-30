@@ -1,5 +1,7 @@
 package Model;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,12 +12,14 @@ import java.util.List;
 public class MemberList {
 
     private volatile static MemberList sUniqueInstance;
+    private static Context sAppContext;
     //private static long sNumberOfMembers;
     private List mMembers;
 
-    private MemberList() {
+    private MemberList(Context context) {
         //sNumberOfMembers = 0;
         mMembers = new ArrayList();
+        sAppContext = context;
     }
 
     /*
@@ -24,11 +28,11 @@ public class MemberList {
     }
     */
 
-    public static MemberList getInstance() {
+    public static MemberList getInstance(Context context) {
         if (sUniqueInstance == null) {
             synchronized (MemberList.class) {
                 if (sUniqueInstance == null) {
-                    sUniqueInstance = new MemberList();
+                    sUniqueInstance = new MemberList(context);
                 }
             }
         }

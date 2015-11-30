@@ -45,8 +45,8 @@ public class Library {
     private Catalog mCatalog;
 
     private Library(Context appContext) {
-        mMemberList = MemberList.getInstance();
-        mCatalog = Catalog.getInstance();
+        mMemberList = MemberList.getInstance(sAppContext);
+        mCatalog = Catalog.getInstance(appContext);
         sAppContext = appContext;
     }
 
@@ -87,7 +87,7 @@ public class Library {
     }
 
     public Book addBook(String title, String author) {
-        Book book = new Book(title, author);
+        Book book = new Book(sAppContext, title, author);
         //writing to DB
         long bookId = -1;
         DatabaseManager databaseManager = new DatabaseManager(sAppContext);
@@ -152,7 +152,7 @@ public class Library {
         Member member = book.getBorrowedBy();
         if (member != null) return BOOK_PLACE_HOLD_FAIL_NOT_ISSUED;
         member = mMemberList.search(memberId);
-        Hold hold = new Hold(book, member, duration);
+        Hold hold = new Hold(sAppContext, book, member, duration);
         book.placeHold(hold);
         member.placeHold(hold);
         return BOOK_PLACE_HOLD_OK;
