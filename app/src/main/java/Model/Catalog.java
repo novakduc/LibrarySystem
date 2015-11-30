@@ -47,7 +47,11 @@ public class Catalog {
         return mBooks.add(book);
     }
 
-    public Iterator getBooks() {
+    public Iterator getBooksIterator() {
         return mBooks.iterator();
+    }
+
+    public List getBooks() {
+        return mBooks;
     }
 }
