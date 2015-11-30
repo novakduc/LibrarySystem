@@ -113,7 +113,11 @@ public class DatabaseManager {
         if (book != null) {
             ContentValues bookValues = new ContentValues();
             bookValues.put(BOOK_BORROWED_BY, book.getBorrowerId());
-            bookValues.put(BOOK_DUE_DATE, book.getDueDate().getTimeInMillis());
+            long dueDate = -1;
+            if (book.getDueDate() != null) {
+                dueDate = book.getDueDate().getTimeInMillis();
+            }
+            bookValues.put(BOOK_DUE_DATE, dueDate);
             String whereClause = BOOK_ID_ROW + " = ?";
             String whereArgs[] = new String[]{String.valueOf(book.getId())};
             updateResult = mDatabase.update(BOOK_TABLE, bookValues, whereClause, whereArgs);
@@ -165,7 +169,10 @@ public class DatabaseManager {
                 Book book = new Book(title, author);
                 book.setId(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_ID_ROW)));
                 book.setBorrower(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_BORROWED_BY)));
-                book.setDueDate(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_DUE_DATE)));
+                long dueDate = bookCursor.getLong(bookCursor.getColumnIndex(BOOK_DUE_DATE));
+                if (dueDate > 0) {
+                    book.setDueDate(bookCursor.getLong(bookCursor.getColumnIndex(BOOK_DUE_DATE)));
+                }
 
                 ////Hold data update to book
                 String holdSelectQuery = "SELECT * FROM " + HOLD_TABLE + " WHERE "

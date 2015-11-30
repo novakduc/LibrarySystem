@@ -19,5 +19,9 @@ public class RenewBooksActivity extends AppCompatActivity {
             transaction.add(R.id.renew_books_member_id_fragment_container, new RenewBooksMemberIdFragment());
             transaction.commit();
         }
+        if (fragmentManager.findFragmentById(R.id.renew_book_loan_list_fragment_container) == null) {
+            transaction.add(R.id.renew_book_loan_list_fragment_container, new RenewBooksLoanListFragment());
+            transaction.commit();
+        }
     }
 }

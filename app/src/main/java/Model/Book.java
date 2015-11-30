@@ -30,6 +30,7 @@ public class Book {
         mTitle = title;
         mAuthor = author;
         mBorrowedBy = -1;
+        mDueDate = null;
         mHolds = new ArrayList<Hold>();
     }
 

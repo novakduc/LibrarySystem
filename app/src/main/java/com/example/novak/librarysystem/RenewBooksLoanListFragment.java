@@ -24,6 +24,6 @@ public class RenewBooksLoanListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_loanbook_list, container, false);
+        return inflater.inflate(R.layout.fragment_loanbook, container, false);
     }
 }
