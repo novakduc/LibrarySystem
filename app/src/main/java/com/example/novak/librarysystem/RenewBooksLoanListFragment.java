@@ -10,10 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import Model.Book;
-import Model.Catalog;
+import Model.Library;
 
 
 /**
@@ -30,7 +32,8 @@ public class RenewBooksLoanListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ///*
-        ArrayAdapter adapter = new BookListAdapter(Catalog.getInstance(getActivity()).getBooks());
+        ArrayAdapter adapter = new BookListAdapter(
+                Library.getInstance(getActivity()).getCatalog().getBooks());
 
         setListAdapter(adapter);
         //*/
@@ -50,15 +53,27 @@ public class RenewBooksLoanListFragment extends ListFragment {
             }
 
             Book book = (Book) getItem(position);
-            TextView bookTitleTextView = (TextView) convertView.findViewById(R.id.book_list_item_titleTextView);
+            TextView positionTextView =
+                    (TextView) convertView.findViewById(R.id.book_list_item_postion);
+            positionTextView.setText((position + 1) + ".");
+            TextView bookTitleTextView =
+                    (TextView) convertView.findViewById(R.id.book_list_item_titleTextView);
             bookTitleTextView.setText(book.getTitle());
-            TextView bookAuthorTextView = (TextView) convertView.findViewById(R.id.book_list_item_authorTextView);
+            TextView bookAuthorTextView =
+                    (TextView) convertView.findViewById(R.id.book_list_item_authorTextView);
             bookAuthorTextView.setText(book.getAuthor());
-            TextView bookDueDateTextView = (TextView) convertView.findViewById(R.id.book_list_item_due_dateTextView);
+            TextView bookDueDateTextView =
+                    (TextView) convertView.findViewById(R.id.book_list_item_due_dateTextView);
             if (book.getDueDate() != null) {
-                bookDueDateTextView.setText(book.getDueDate().toString());
+                Date date = new Date(book.getDueDate().getTimeInMillis());
+                SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format));
+
+                bookDueDateTextView.setText(dateFormat.format(date));
+            } else {
+                bookDueDateTextView.setText(getString(R.string.due_date));
             }
-            CheckBox onHoldCheckBox = (CheckBox) convertView.findViewById(R.id.book_list_item_onHoldCheckBox);
+            CheckBox onHoldCheckBox =
+                    (CheckBox) convertView.findViewById(R.id.book_list_item_onHoldCheckBox);
             onHoldCheckBox.setEnabled(book.hasHold());
             return convertView;
         }

@@ -185,6 +185,10 @@ public class Library {
         return null;
     }
 
+    public Catalog getCatalog() {
+        return mCatalog;
+    }
+
     public Book searchBook(long id) {
         return mCatalog.search(id);
     }
