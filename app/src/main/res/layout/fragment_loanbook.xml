@@ -4,7 +4,7 @@
                 android:layout_height="wrap_content">
 
     <CheckBox
-        android:id="@+id/book_list_item_onHold"
+        android:id="@+id/book_list_item_onHoldCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -13,32 +13,32 @@
         android:padding="4dp"/>
 
     <TextView
-        android:id="@+id/book_list_item_title"
+        android:id="@+id/book_list_item_titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/book_list_item_onHold"
+        android:layout_toLeftOf="@id/book_list_item_onHoldCheckBox"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:text="@string/add_book_title"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/book_list_item_due_date"
+        android:id="@+id/book_list_item_due_dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/book_list_item_title"
-        android:layout_toLeftOf="@id/book_list_item_onHold"
+        android:layout_below="@id/book_list_item_titleTextView"
+        android:layout_toLeftOf="@id/book_list_item_onHoldCheckBox"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:paddingTop="4dp"
         android:text="@string/due_date"/>
 
     <TextView
-        android:id="@+id/book_list_item_author"
+        android:id="@+id/book_list_item_authorTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/book_list_item_title"
-        android:layout_toLeftOf="@id/book_list_item_due_date"
+        android:layout_below="@id/book_list_item_titleTextView"
+        android:layout_toLeftOf="@id/book_list_item_due_dateTextView"
         android:paddingLeft="4dp"
         android:paddingTop="4dp"
         android:text="@string/add_book_author"/>

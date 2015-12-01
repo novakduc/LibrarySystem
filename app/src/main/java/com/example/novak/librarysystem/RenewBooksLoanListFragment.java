@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -28,9 +30,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ///*
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(),
-                android.R.layout.simple_list_item_1,
-                Catalog.getInstance(getActivity().getApplicationContext()).getBooks());
+        ArrayAdapter adapter = new BookListAdapter(Catalog.getInstance(getActivity()).getBooks());
 
         setListAdapter(adapter);
         //*/
@@ -50,7 +50,17 @@ public class RenewBooksLoanListFragment extends ListFragment {
             }
 
             Book book = (Book) getItem(position);
-            return super.getView(position, convertView, parent);
+            TextView bookTitleTextView = (TextView) convertView.findViewById(R.id.book_list_item_titleTextView);
+            bookTitleTextView.setText(book.getTitle());
+            TextView bookAuthorTextView = (TextView) convertView.findViewById(R.id.book_list_item_authorTextView);
+            bookAuthorTextView.setText(book.getAuthor());
+            TextView bookDueDateTextView = (TextView) convertView.findViewById(R.id.book_list_item_due_dateTextView);
+            if (book.getDueDate() != null) {
+                bookDueDateTextView.setText(book.getDueDate().toString());
+            }
+            CheckBox onHoldCheckBox = (CheckBox) convertView.findViewById(R.id.book_list_item_onHoldCheckBox);
+            onHoldCheckBox.setEnabled(book.hasHold());
+            return convertView;
         }
     }
 }
