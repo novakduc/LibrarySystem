@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import Model.Library;
  */
 public class RenewBooksLoanListFragment extends ListFragment {
 
-
+    public static final String EXTRA_RENEW_BOOKS_LIST_TAG = "com.novak.librarysystem.renewBooksLoanListFragment";
     public RenewBooksLoanListFragment() {
         // Required empty public constructor
     }
@@ -32,10 +33,18 @@ public class RenewBooksLoanListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ///*
-        ArrayAdapter adapter = new BookListAdapter(
-                Library.getInstance(getActivity()).getCatalog().getBooks());
-
-        setListAdapter(adapter);
+        Bundle args = new Bundle();
+        args = getArguments();
+        if (args != null) {
+            Long memberId = args.getLong(EXTRA_RENEW_BOOKS_LIST_TAG);
+            List<Long> issuedBooksId = Library.getInstance(getActivity()).searchMember(memberId).getIssuedBooks();
+            List<Book> issuedBooks = new ArrayList(Library.MAX_ISSUABLE);
+            for (Long id : issuedBooksId) {
+                issuedBooks.add(Library.getInstance(getActivity()).searchBook(id));
+            }
+            ArrayAdapter adapter = new BookListAdapter(issuedBooks);
+            setListAdapter(adapter);
+        }
         //*/
     }
 

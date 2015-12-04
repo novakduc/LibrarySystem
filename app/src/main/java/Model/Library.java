@@ -106,7 +106,7 @@ public class Library {
     public Iterator renewRequest(long memberId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return null;
-        return member.getIssuedBooks();
+        return member.getIssuedBooks().iterator();
     }
 
     public Member processHold(long bookId) {

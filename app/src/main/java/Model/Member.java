@@ -68,7 +68,7 @@ public class Member {
 
     public boolean returnBook(Book book) {
         mTransactions.add(new Transaction(book.getTitle(), Transaction.RETURN_TRANSACTION));
-        return mIssuedBooks.remove(book);
+        return mIssuedBooks.remove(book.getId());
     }
 
     public void placeHold(Hold hold) {
@@ -109,8 +109,8 @@ public class Member {
         return list.iterator();
     }
 
-    public Iterator getIssuedBooks() {
-        return mIssuedBooks.iterator();
+    public List<Long> getIssuedBooks() {
+        return mIssuedBooks;
     }
 
     public Transaction getLastTransaction() {
