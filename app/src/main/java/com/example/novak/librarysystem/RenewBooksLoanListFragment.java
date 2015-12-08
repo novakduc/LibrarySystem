@@ -95,7 +95,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
             CheckBox onHoldCheckBox =
                     (CheckBox) convertView.findViewById(R.id.book_list_item_onHoldCheckBox);
             onHoldCheckBox.setEnabled(book.hasHold());
-            Log.d("Focus", "reach here getView");
+            Log.d("Focus", "reach here getView " + position);
             return convertView;
         }
     }
