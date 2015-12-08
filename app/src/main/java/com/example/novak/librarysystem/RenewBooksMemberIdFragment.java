@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class RenewBooksMemberIdFragment extends Fragment {
                             bookLoanListFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
+                    Log.d("Focus", getActivity().getCurrentFocus().toString());
 
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), R.string.renew_book_member_id_invalid, Toast.LENGTH_SHORT).show();

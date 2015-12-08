@@ -4,6 +4,7 @@ package com.example.novak.librarysystem;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -53,6 +54,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+        Log.d("Focus", "reach here item onClick");
         Toast.makeText(getActivity(), "Item " + position + "th has been clicked.",
                 Toast.LENGTH_SHORT).show();
     }
@@ -93,6 +95,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
             CheckBox onHoldCheckBox =
                     (CheckBox) convertView.findViewById(R.id.book_list_item_onHoldCheckBox);
             onHoldCheckBox.setEnabled(book.hasHold());
+            Log.d("Focus", "reach here getView");
             return convertView;
         }
     }
