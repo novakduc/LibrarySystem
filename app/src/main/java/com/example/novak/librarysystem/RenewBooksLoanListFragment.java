@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +48,13 @@ public class RenewBooksLoanListFragment extends ListFragment {
             setListAdapter(adapter);
         }
         //*/
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Toast.makeText(getActivity(), "Item " + position + "th has been clicked.",
+                Toast.LENGTH_SHORT).show();
     }
 
     private class BookListAdapter extends ArrayAdapter {

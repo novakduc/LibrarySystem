@@ -25,6 +25,11 @@ public class RenewBooksMemberIdFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Library.getInstance(getActivity());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +80,7 @@ public class RenewBooksMemberIdFragment extends Fragment {
                             bookLoanListFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
+                    memberIdEditText.clearFocus();
 
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), R.string.renew_book_member_id_invalid, Toast.LENGTH_SHORT).show();
