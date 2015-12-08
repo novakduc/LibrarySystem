@@ -80,7 +80,6 @@ public class RenewBooksMemberIdFragment extends Fragment {
                             bookLoanListFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
-                    memberIdEditText.clearFocus();
 
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), R.string.renew_book_member_id_invalid, Toast.LENGTH_SHORT).show();
