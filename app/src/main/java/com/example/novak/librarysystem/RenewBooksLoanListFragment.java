@@ -26,6 +26,8 @@ import Model.Library;
 public class RenewBooksLoanListFragment extends ListFragment {
 
     public static final String EXTRA_RENEW_BOOKS_LIST_TAG = "com.novak.librarysystem.renewBooksLoanListFragment";
+    private List<Book> mIssuedBooks;
+
     public RenewBooksLoanListFragment() {
         // Required empty public constructor
     }
@@ -38,12 +40,12 @@ public class RenewBooksLoanListFragment extends ListFragment {
         args = getArguments();
         if (args != null) {
             Long memberId = args.getLong(EXTRA_RENEW_BOOKS_LIST_TAG);
-            List<Long> issuedBooksId = Library.getInstance(getActivity()).searchMember(memberId).getIssuedBooks();
-            List<Book> issuedBooks = new ArrayList(Library.MAX_ISSUABLE);
+            List<Long> issuedBooksId = Library.getInstance(getActivity()).renewRequest(memberId);
+            mIssuedBooks = new ArrayList(Library.MAX_ISSUABLE);
             for (Long id : issuedBooksId) {
-                issuedBooks.add(Library.getInstance(getActivity()).searchBook(id));
+                mIssuedBooks.add(Library.getInstance(getActivity()).searchBook(id));
             }
-            ArrayAdapter adapter = new BookListAdapter(issuedBooks);
+            ArrayAdapter adapter = new BookListAdapter(mIssuedBooks);
             setListAdapter(adapter);
         }
         //*/
@@ -54,8 +56,8 @@ public class RenewBooksLoanListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         Log.d("Focus", "reach here item onClick");
         Intent intent = new Intent(getActivity(), LoanBookDetailActivity.class);
+        intent.putExtra(LoanBookDetailsFragment.EXTRA_BOOK_ID, mIssuedBooks.get(position).getId());
         startActivity(intent);
-
     }
 
     private class BookListAdapter extends ArrayAdapter {

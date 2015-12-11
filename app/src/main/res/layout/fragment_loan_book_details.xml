@@ -39,8 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
                 android:editable="false"
-                android:hint="@string/issue_book_book_id_edit_text"
-                android:inputType="number"/>
+                android:focusable="false"/>
 
         </LinearLayout>
 

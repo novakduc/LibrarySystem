@@ -16,10 +16,11 @@ public class LoanBookDetailActivity extends AppCompatActivity {
             if (savedInstanceState != null) {
                 return;
             }
-
+            Long bookId = (Long) getIntent().getSerializableExtra(LoanBookDetailsFragment.EXTRA_BOOK_ID);
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.loan_book_details_fragment_container, new LoanBookDetailsFragment());
+            transaction.add(R.id.loan_book_details_fragment_container,
+                    LoanBookDetailsFragment.newInstance(bookId));
             transaction.commit();
         }
     }

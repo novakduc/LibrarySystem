@@ -9,6 +9,7 @@ import com.example.novak.librarysystem.R;
 
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 
 import Model.db_processing.DatabaseManager;
 
@@ -100,13 +101,17 @@ public class Library {
     }
 
     public int renew(Book book) {
-        return book.renewBook();
+        int renewResult = book.renewBook();
+        if (renewResult == Book.RENEW_OK) {
+            new UpdateData().execute(null, book);
+        }
+        return renewResult;
     }
 
-    public Iterator renewRequest(long memberId) {
+    public List<Long> renewRequest(long memberId) {
         Member member = mMemberList.search(memberId);
         if (member == null) return null;
-        return member.getIssuedBooks().iterator();
+        return member.getIssuedBooks();
     }
 
     public Member processHold(long bookId) {

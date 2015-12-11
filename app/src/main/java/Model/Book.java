@@ -52,7 +52,7 @@ public class Book {
 
     public int renewBook() {
         if (mHolds.isEmpty()) {
-            mDueDate.add(Calendar.DAY_OF_MONTH, 30);
+            mDueDate.add(Calendar.MONTH, 1);
             MemberList.getInstance(sAppContext).search(mBorrowedBy).addTransaction(
                     new Transaction(mTitle, Transaction.RENEW_TRANSACTION));
             return Book.RENEW_OK;
