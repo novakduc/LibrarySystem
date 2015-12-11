@@ -60,6 +60,12 @@ public class RenewBooksLoanListFragment extends ListFragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((BookListAdapter) getListAdapter()).notifyDataSetChanged();
+    }
+
     private class BookListAdapter extends ArrayAdapter {
 
         public BookListAdapter(List books) {
