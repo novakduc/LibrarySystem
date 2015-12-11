@@ -1,9 +1,10 @@
 package com.example.novak.librarysystem;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class RemoveBookFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+        Log.d("Fragment", "Created fragment instance");
         return fragment;
     }
 
@@ -58,12 +60,14 @@ public class RemoveBookFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Log.d("Fragment", "Fragment onCreate launched");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d("Fragment", "Fragment onCreateView launched");
         return inflater.inflate(R.layout.fragment_remove_book, container, false);
     }
 
@@ -75,8 +79,9 @@ public class RemoveBookFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
+        Log.d("Fragment", "Fragment onAttach launched");
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -89,6 +94,7 @@ public class RemoveBookFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        Log.d("Fragment", "Fragment onDetach lauched");
     }
 
     /**

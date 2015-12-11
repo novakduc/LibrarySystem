@@ -95,6 +95,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mRemoveBooksButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RemoveBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 }

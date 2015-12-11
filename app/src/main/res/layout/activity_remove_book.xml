@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
+    android:id="@+id/remove_books_fragment_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,4 +11,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.novak.librarysystem.RemoveBookActivity">
 
-</RelativeLayout>
+</FrameLayout>

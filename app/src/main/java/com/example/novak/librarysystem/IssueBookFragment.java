@@ -105,6 +105,7 @@ public class IssueBookFragment extends Fragment {
 
                     mBookTitleEditText.setText(mBook.getTitle());
                     mBookAuthorEditText.setText(mBook.getAuthor());
+                    Utility.hideSoftKeyboard(getActivity());
                 } catch (NumberFormatException ex) {
                     Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();
                 }

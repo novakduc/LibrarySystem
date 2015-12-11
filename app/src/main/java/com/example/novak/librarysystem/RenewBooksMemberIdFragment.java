@@ -1,6 +1,7 @@
 package com.example.novak.librarysystem;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -21,6 +22,8 @@ import Model.Member;
  * A simple {@link Fragment} subclass.
  */
 public class RenewBooksMemberIdFragment extends Fragment {
+
+    private OnSearchButtonClickListener mListener;
 
     public RenewBooksMemberIdFragment() {
         // Required empty public constructor
@@ -82,6 +85,7 @@ public class RenewBooksMemberIdFragment extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
                     Log.d("Focus", getActivity().getCurrentFocus().toString());
+                    Utility.hideSoftKeyboard(getActivity());
 
                 } catch (NumberFormatException e) {
                     Toast.makeText(getActivity(), R.string.renew_book_member_id_invalid, Toast.LENGTH_SHORT).show();
@@ -89,5 +93,23 @@ public class RenewBooksMemberIdFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OnSearchButtonClickListener) {
+            mListener = (OnSearchButtonClickListener) activity;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnSearchButtonClickListener {
+        void changeFocus();
     }
 }

@@ -4,8 +4,10 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-public class RenewBooksActivity extends AppCompatActivity {
+public class RenewBooksActivity extends AppCompatActivity implements
+        RenewBooksMemberIdFragment.OnSearchButtonClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +27,10 @@ public class RenewBooksActivity extends AppCompatActivity {
         */
 
         transaction.commit();
+    }
+
+    @Override
+    public void changeFocus() {
+        Log.d("Listener", "changeFocus launched");
     }
 }
