@@ -3,6 +3,7 @@ package com.example.novak.librarysystem;
 
 import android.app.Fragment;
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,11 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import Model.Book;
@@ -55,8 +53,9 @@ public class RenewBooksLoanListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Log.d("Focus", "reach here item onClick");
-        Toast.makeText(getActivity(), "Item " + position + "th has been clicked.",
-                Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), LoanBookDetailActivity.class);
+        startActivity(intent);
+
     }
 
     private class BookListAdapter extends ArrayAdapter {
@@ -69,7 +68,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = getActivity().getLayoutInflater()
-                        .inflate(R.layout.fragment_loanbook, null);
+                        .inflate(R.layout.fragment_loanbook_item, null);
             }
 
             Book book = (Book) getItem(position);
@@ -85,10 +84,7 @@ public class RenewBooksLoanListFragment extends ListFragment {
             TextView bookDueDateTextView =
                     (TextView) convertView.findViewById(R.id.book_list_item_due_dateTextView);
             if (book.getDueDate() != null) {
-                Date date = new Date(book.getDueDate().getTimeInMillis());
-                SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format));
-
-                bookDueDateTextView.setText(dateFormat.format(date));
+                bookDueDateTextView.setText(Utility.dateToString(getActivity(), book.getDueDate()));
             } else {
                 bookDueDateTextView.setText(getString(R.string.due_date));
             }

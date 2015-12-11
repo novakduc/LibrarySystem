@@ -20,7 +20,8 @@ import Model.Member;
 public class IssueBookFragment extends Fragment {
 
     private EditText mMemberIdEditText, mMemberNameEditText, mMemberAddressEditText,
-            mMemberPhoneEditText, mBookIdEditText, mBookTitleEditText, mBookAuthorEditText;
+            mMemberPhoneEditText, mBookIdEditText, mBookTitleEditText, mBookAuthorEditText,
+            mBookDueDateEditText;
     private Button mMemberSearchButton, mBookSearchButton, mIssueButton;
 
     private Book mBook;
@@ -50,6 +51,7 @@ public class IssueBookFragment extends Fragment {
         mBookTitleEditText = (EditText) view.findViewById(R.id.issue_book_book_title_text_view);
         mBookIdEditText = (EditText) view.findViewById(R.id.issue_book_book_id_edit_text);
         mBookAuthorEditText = (EditText) view.findViewById(R.id.issue_book_book_author_text_view);
+        mBookDueDateEditText = (EditText) view.findViewById(R.id.issue_book_due_date_text_view);
 
         mMemberSearchButton = (Button) view.findViewById(R.id.issue_book_member_search_button);
         mBookSearchButton = (Button) view.findViewById(R.id.issue_book_book_search_button);
@@ -70,6 +72,8 @@ public class IssueBookFragment extends Fragment {
                 int issueBookResult = mLibrary.issueBook(mBook, mMember);
                 switch (issueBookResult) {
                     case Library.ISSUE_BOOK_OK:
+                        mBookDueDateEditText.setText(
+                                Utility.dateToString(getActivity(), mBook.getDueDate()));
                         Toast.makeText(getActivity(), R.string.issue_book_successfully,
                                 Toast.LENGTH_SHORT).show();
                         break;
@@ -78,7 +82,8 @@ public class IssueBookFragment extends Fragment {
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case Library.ISSUE_BOOK_FAIL_BOOK_MEMBER_ISSUE_LIMIT:
-                        Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully_member_in_jail, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully_member_in_jail,
+                                Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         Toast.makeText(getActivity(), R.string.issue_book_unsuccessfully, Toast.LENGTH_SHORT).show();
@@ -100,11 +105,19 @@ public class IssueBookFragment extends Fragment {
                         mBookTitleEditText.setHint(R.string.book_not_exist);
                         mBookAuthorEditText.setText("");
                         mBookAuthorEditText.setHint(R.string.book_not_exist);
+                        mBookDueDateEditText.setText("");
+                        mBookDueDateEditText.setHint(R.string.book_not_exist);
                         return;
                     }
 
                     mBookTitleEditText.setText(mBook.getTitle());
                     mBookAuthorEditText.setText(mBook.getAuthor());
+                    if (mBook.getDueDate() == null) {
+                        mBookDueDateEditText.setText(R.string.book_not_issued);
+                    } else {
+                        mBookDueDateEditText.setText(
+                                Utility.dateToString(getActivity(), mBook.getDueDate()));
+                    }
                     Utility.hideSoftKeyboard(getActivity());
                 } catch (NumberFormatException ex) {
                     Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();

@@ -90,4 +90,8 @@
     <string name="date_format">yyyy/MM/dd</string>
     <string name="number">1.</string>
     <string name="renew_book_member_id_invalid">Invalid member id</string>
+    <string name="book_due_date">Due date:</string>
+    <string name="book_not_issued">not issued yet</string>
+    <string name="loan_book_header">Loan book details</string>
+    <string name="renew_book_button">Renew</string>
 </resources>

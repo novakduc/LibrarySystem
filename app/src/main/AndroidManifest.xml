@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".RemoveBookActivity">
         </activity>
+        <activity android:name=".LoanBookDetailActivity">
+        </activity>
     </application>
 
 </manifest>
