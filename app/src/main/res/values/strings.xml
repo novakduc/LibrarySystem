@@ -99,4 +99,6 @@
     <string name="remove_book_button">Remove</string>
     <string name="remove_book_failed_not_exist">Failed. Book not exist</string>
     <string name="remove_book_failed_borrowed">Failed. Book has been issued</string>
+    <string name="book_remove_failed_on_hold">Failed. Book is on hold</string>
+    <string name="book_remove_ok">Done. Input book Id to remove</string>
 </resources>

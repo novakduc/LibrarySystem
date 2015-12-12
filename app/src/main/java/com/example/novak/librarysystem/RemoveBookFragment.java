@@ -131,7 +131,21 @@ public class RemoveBookFragment extends Fragment {
                         Toast.makeText(getActivity(), R.string.remove_book_failed_borrowed,
                                 Toast.LENGTH_SHORT).show();
                         return;
-
+                    case Library.BOOK_REMOVE_FAIL_HOLD:
+                        Toast.makeText(getActivity(), R.string.book_remove_failed_on_hold,
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    case Library.BOOK_REMOVE_OK:
+                        Toast.makeText(getActivity(), R.string.book_remove_ok,
+                                Toast.LENGTH_SHORT).show();
+                        bookIdEditText.setText("");
+                        bookTitleEditText.setText("");
+                        bookAuthorEditText.setText("");
+                        bookDueDateEditText.setText("");
+                        onHoldCheckBox.setSelected(false);
+                        return;
+                    default:
+                        return;
                     // TODO: 12/12/2015
                 }
             }
