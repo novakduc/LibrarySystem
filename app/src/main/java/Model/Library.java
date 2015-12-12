@@ -231,11 +231,12 @@ public class Library {
         }
     }
 
-    private class DeleteData extends AsyncTask<Object, void, void> {
+    private class DeleteData extends AsyncTask<Object, Void, Void> {
 
         @Override
-        protected void doInBackground(Object... params) {
+        protected Void doInBackground(Object... params) {
             // TODO: 12/12/2015 implement removing member, book
+            return null;
         }
     }
 
