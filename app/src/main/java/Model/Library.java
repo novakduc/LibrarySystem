@@ -179,7 +179,7 @@ public class Library {
         Book book = mCatalog.search(bookId);
         if (book == null) return BOOK_REMOVE_FAIL_NOT_EXIST;
         if (book.hasHold()) return BOOK_REMOVE_FAIL_HOLD;
-        if (book.getBorrowedBy() == null) return BOOK_REMOVE_FAIL_BORROWED;
+        if (book.getBorrowedBy() != null) return BOOK_REMOVE_FAIL_BORROWED;
         mCatalog.remove(book);
         return BOOK_REMOVE_OK;
     }

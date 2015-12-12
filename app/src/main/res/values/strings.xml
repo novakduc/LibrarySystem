@@ -94,4 +94,9 @@
     <string name="book_not_issued">not issued yet</string>
     <string name="loan_book_header">Loan book details</string>
     <string name="renew_book_button">Renew</string>
+    <string name="remove_book_header">Input book id to remove</string>
+    <string name="book_on_hold">on hold</string>
+    <string name="remove_book_button">Remove</string>
+    <string name="remove_book_failed_not_exist">Failed. Book not exist</string>
+    <string name="remove_book_failed_borrowed">Failed. Book has been issued</string>
 </resources>

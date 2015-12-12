@@ -8,6 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import Model.Book;
+import Model.Library;
 
 
 /**
@@ -27,6 +34,8 @@ public class RemoveBookFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Book mBook;
 
     private OnFragmentInteractionListener mListener;
 
@@ -56,6 +65,7 @@ public class RemoveBookFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Library.getInstance(getActivity());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -68,7 +78,66 @@ public class RemoveBookFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Log.d("Fragment", "Fragment onCreateView launched");
-        return inflater.inflate(R.layout.fragment_remove_book, container, false);
+        View view = inflater.inflate(R.layout.fragment_remove_book, container, false);
+
+        final EditText bookIdEditText = (EditText) view.findViewById(R.id.remove_book_book_id_edit_text);
+        final EditText bookTitleEditText = (EditText) view.findViewById(R.id.remove_book_book_title_text_view);
+        final EditText bookAuthorEditText = (EditText) view.findViewById(R.id.remove_book_book_author_text_view);
+        final EditText bookDueDateEditText = (EditText) view.findViewById(R.id.remove_book_due_date_text_view);
+        final CheckBox onHoldCheckBox = (CheckBox) view.findViewById(R.id.on_hold_check_box);
+        final Button removeButton = (Button) view.findViewById(R.id.remove_book_remove_button);
+        removeButton.setFocusable(false);
+        Button searchButton = (Button) view.findViewById(R.id.remove_book_search_button);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Long bookId = Long.parseLong(bookIdEditText.getText().toString());
+                    mBook = Library.getInstance(getActivity()).searchBook(bookId);
+                    if (mBook != null) {
+                        bookTitleEditText.setText(mBook.getTitle());
+                        bookAuthorEditText.setText(mBook.getAuthor());
+                        if (mBook.getDueDate() == null) {
+                            bookDueDateEditText.setText(R.string.book_not_issued);
+                        } else {
+                            bookDueDateEditText.setText(
+                                    Utility.dateToString(getActivity(), mBook.getDueDate()));
+                        }
+                    }
+                    if (mBook.hasHold()) {
+                        onHoldCheckBox.setSelected(true);
+                    } else {
+                        onHoldCheckBox.setSelected(false);
+                    }
+
+                    removeButton.setFocusable(true);
+                } catch (NumberFormatException ex) {
+                    Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int removeResult = Library.getInstance(getActivity()).removeBook(mBook.getId());
+                switch (removeResult) {
+                    case Library.BOOK_REMOVE_FAIL_NOT_EXIST:
+                        Toast.makeText(getActivity(), R.string.remove_book_failed_not_exist,
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    case Library.BOOK_REMOVE_FAIL_BORROWED:
+                        Toast.makeText(getActivity(), R.string.remove_book_failed_borrowed,
+                                Toast.LENGTH_SHORT).show();
+                        return;
+
+                    // TODO: 12/12/2015
+                }
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
