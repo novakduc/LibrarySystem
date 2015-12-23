@@ -37,16 +37,9 @@
                 android:id="@+id/remove_book_book_id_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
+                android:layout_weight="75"
                 android:hint="@string/return_book_book_id_edit_text"
                 android:inputType="number"/>
-
-            <Button
-                android:id="@+id/remove_book_search_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:text="@android:string/search_go"/>
 
         </LinearLayout>
 
@@ -119,6 +112,7 @@
                 android:id="@+id/on_hold_check_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:focusable="false"
                 android:text="@string/book_on_hold"/>
         </LinearLayout>
@@ -130,5 +124,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:enabled="false"
         android:text="@string/remove_book_button"/>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,34 +89,63 @@ public class RemoveBookFragment extends Fragment {
         final CheckBox onHoldCheckBox = (CheckBox) view.findViewById(R.id.on_hold_check_box);
         final Button removeButton = (Button) view.findViewById(R.id.remove_book_remove_button);
         removeButton.setFocusable(false);
-        Button searchButton = (Button) view.findViewById(R.id.remove_book_search_button);
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
+        bookIdEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    Long bookId = Long.parseLong(bookIdEditText.getText().toString());
+                    Long bookId = Long.parseLong(s.toString());
                     mBook = Library.getInstance(getActivity()).searchBook(bookId);
                     if (mBook != null) {
                         bookTitleEditText.setText(mBook.getTitle());
                         bookAuthorEditText.setText(mBook.getAuthor());
                         if (mBook.getDueDate() == null) {
                             bookDueDateEditText.setText(R.string.book_not_issued);
+                            removeButton.setEnabled(true);
                         } else {
+                            removeButton.setEnabled(false);
                             bookDueDateEditText.setText(
                                     Utility.dateToString(getActivity(), mBook.getDueDate()));
                         }
-                    }
-                    if (mBook.hasHold()) {
-                        onHoldCheckBox.setSelected(true);
+                        onHoldCheckBox.setEnabled(true);
+                        if (mBook.hasHold()) {
+                            onHoldCheckBox.setSelected(true);
+                            removeButton.setEnabled(false);
+                        } else {
+                            onHoldCheckBox.setSelected(false);
+                            removeButton.setEnabled(true);
+                        }
                     } else {
+                        bookTitleEditText.setText("");
+                        bookTitleEditText.setHint(R.string.book_not_exist);
+                        bookAuthorEditText.setText("");
+                        bookAuthorEditText.setHint(R.string.book_not_exist);
+                        bookDueDateEditText.setText("");
+                        onHoldCheckBox.setEnabled(false);
                         onHoldCheckBox.setSelected(false);
+                        removeButton.setEnabled(false);
                     }
-
-                    removeButton.setFocusable(true);
                 } catch (NumberFormatException ex) {
-                    Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();
+                    bookTitleEditText.setText("");
+                    bookTitleEditText.setHint(R.string.book_not_exist);
+                    bookAuthorEditText.setText("");
+                    bookAuthorEditText.setHint(R.string.book_not_exist);
+                    bookDueDateEditText.setText("");
+                    onHoldCheckBox.setEnabled(false);
+                    onHoldCheckBox.setSelected(false);
+                    removeButton.setEnabled(false);
+                    //Toast.makeText(getActivity(), R.string.issue_book_invalid_book_id, Toast.LENGTH_SHORT).show();
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 

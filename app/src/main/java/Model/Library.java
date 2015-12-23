@@ -180,6 +180,11 @@ public class Library {
         if (book == null) return BOOK_REMOVE_FAIL_NOT_EXIST;
         if (book.hasHold()) return BOOK_REMOVE_FAIL_HOLD;
         if (book.getBorrowedBy() != null) return BOOK_REMOVE_FAIL_BORROWED;
+
+        //Delete book on DB
+        new DeleteData().execute(null, book);
+
+        //Remove book from Catalog
         mCatalog.remove(book);
         return BOOK_REMOVE_OK;
     }
@@ -236,6 +241,11 @@ public class Library {
         @Override
         protected Void doInBackground(Object... params) {
             // TODO: 12/12/2015 implement removing member, book
+            Log.i("DeleteData", "Deleting book");
+            Member member = (Member) params[0];
+            Book book = (Book) params[1];
+            DatabaseManager databaseManager = new DatabaseManager(sAppContext);
+            databaseManager.deleteData(member, book);
             return null;
         }
     }

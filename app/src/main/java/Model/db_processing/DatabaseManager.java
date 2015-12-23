@@ -125,6 +125,24 @@ public class DatabaseManager {
         return updateResult;
     }
 
+    public long deleteData(Member member, Book book) {
+        mDatabase = mHelper.getWritableDatabase();
+        long deleteResult = -1;
+        if (member != null) {
+            //Remove member from DB
+        }
+
+        if (book == null) {
+            return deleteResult;
+        }
+
+        //Remove book from DB
+        String whereClause = BOOK_ID_ROW + " = ?";
+        String whereArgs[] = new String[]{String.valueOf(book.getId())};
+        deleteResult = mDatabase.delete(BOOK_TABLE, whereClause, whereArgs);
+        return deleteResult;
+    }
+
     public long addMember(Member member) {
         mDatabase = mHelper.getWritableDatabase();
 

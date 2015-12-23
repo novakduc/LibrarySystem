@@ -71,7 +71,6 @@ public class LoanBookDetailsFragment extends Fragment {
         renewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 12/11/2015 perform renew
                 Library.getInstance(getActivity()).renew(mBook);
                 bookDueDateEditText.setText(Utility.dateToString(getActivity(), mBook.getDueDate()));
             }
